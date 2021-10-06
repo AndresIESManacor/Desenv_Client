@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function a(){
+        var number1 = prompt("Select number1: ");
+        var number2 = prompt("Select number2: ");
+
+        if (parseInt(number1)>parseInt(number2)){
+            document.getElementById("a").innerHTML = (parseInt(number1)+parseInt(number2));
+        } else {
+            document.getElementById("a").innerHTML = (parseInt(number2)-parseInt(number1));
+        }
+    }
+
+    function b(){
+        var note1 = prompt("note1: ")
+        var note2 = prompt("note2: ")
+        var note3 = prompt("note3: ")
+
+        if (((parseInt(note1)+parseInt(note2)+parseInt(note3))/3)>=5) {
+            document.getElementById("b").innerHTML = ("You pass!<br/>");
+        } else {
+            document.getElementById("b").innerHTML = ("You fail!<br/>");
+        }
+    }
+
+    function c(){
+        var number = prompt("Enter a number");
+
+        if (parseInt(number)%2===0) {
+            document.getElementById("c").innerHTML = ("Its PAIR!!!");
+        } else {
+            document.getElementById("c").innerHTML = ("Its not PAIR!!!");
+        }
+    }
+
+    function d() {
+        var age = prompt("Select your age");
+
+        if (parseInt(age)>=18 && parseInt(age)<65) {
+            document.getElementById("d").innerHTML = ("Working Age<br/>");
+        } else {
+            document.getElementById("d").innerHTML = ("Not Working Age<br/>")
+        }
+    }
+</script>
+<button id="a" onclick="a()">Result A</button>
+<button id="b" onclick="b()">Result B</button>
+<button id="c" onclick="c()">Result C</button>
+<button id="d" onclick="d()">Result D</button>
+</body>
+</html>

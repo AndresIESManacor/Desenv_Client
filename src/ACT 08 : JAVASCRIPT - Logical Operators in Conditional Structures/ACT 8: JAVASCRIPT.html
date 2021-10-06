@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function a(){
+      var day = prompt("Select day: ");
+      var month = prompt("Select month: ");
+      var year = prompt("Select year: ");
+
+      //25 diciembre (es navidad)
+      if (parseInt(day)===25 && month==="diciembre" || parseInt(month)===12) {
+          document.getElementById("a").innerHTML = ("ITS Christmas!!");
+      } else {
+          document.getElementById("a").innerHTML = ("ITS NOT Christmas!!");
+      }
+  }
+  function b(){
+
+  }
+  function c(){
+
+  }
+  function d(){
+
+  }
+</script>
+<button id="a" onclick="a()">Result A</button>
+<button id="b" onclick="b()">Result B</button>
+<button id="c" onclick="c()">Result C</button>
+<button id="d" onclick="d()">Result D</button>
+</body>
+</html>

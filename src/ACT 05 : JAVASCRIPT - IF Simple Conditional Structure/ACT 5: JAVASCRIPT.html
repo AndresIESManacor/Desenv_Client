@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function calcul1(){
+        var note1 = prompt("Your note1: ");
+        var note2 = prompt("Your note2: ");
+        var note3 = prompt("Your note3: ");
+        if (((parseInt(note1)+parseInt(note2)+parseInt(note3))/3)>=5) {
+             document.getElementById("result1").innerHTML = ("Congratulations! You pass the exam<br/>");
+        } else {
+            document.getElementById("result1").innerHTML = ("F for you, you failed<br/>");
+        }
+    }
+
+    function calcul2() {
+        var age = prompt("Select your age");
+
+        if (parseInt(age)>=18 && parseInt(age)<65) {
+            document.getElementById("result2").innerHTML = ("You are in working age<br/>");
+        } else {
+            document.getElementById("result2").innerHTML = ("WRONG AGE you dont need to work<br/>")
+        }
+    }
+
+    function calcul3(){
+        var email = prompt("Write your email: ");
+        var emailConfirm = prompt("Confirmation of your email: ");
+
+        if (email !== emailConfirm) {
+            document.getElementById("result3").innerHTML = ("Emails are different!!<br/>");
+        } else {
+            document.getElementById("result3").innerHTML = ("Emails are correct <br/>");
+        }
+    }
+
+    function calcul4(){
+        var number = prompt("Enter a number");
+
+        if (parseInt(number)%2===0) {
+            document.getElementById("result4").innerHTML = ("Its PAIR!!!");
+        } else {
+            document.getElementById("result4").innerHTML = ("Its not PAIR!!!");
+        }
+    }
+
+</script>
+<button id="result1" onclick="calcul1()">Result1</button>
+<button id="result2" onclick="calcul2()">Result2</button>
+<button id="result3" onclick="calcul3()">Result3</button>
+<button id="result4" onclick="calcul4()">Result4</button>
+</body>
+</html>
