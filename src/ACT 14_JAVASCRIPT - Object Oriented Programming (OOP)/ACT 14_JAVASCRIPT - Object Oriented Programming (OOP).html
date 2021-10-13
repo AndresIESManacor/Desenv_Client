@@ -6,16 +6,62 @@
 </head>
 <body>
 <script>
-  /*
-  a) Create a class called Addition with 2 attributes (valeu1 and value2) and three methods (loadValue1, loadValue2 and result). Try this class to do some additions.
+  function Addition(value1, value2){
+      this.value1 = value1;
+      this.value2 = value2;
+      this.result = result;
+      this.loadValue1 = loadValue1;
+      this.loadValue2 = loadValue2;
 
-b) Create a class called Person (name and age), a class called Company (name and top age workers). Write a script to create 2 workers and 1 company. Show how many people are able to work in this company.
-   */
-  function a(){
-
+      function loadValue1(){
+          return value1;
+      }
+      function loadValue2(){
+          return value2;
+      }
+      function result(){
+          return value1+value2;
+      }
   }
-  function b(){
 
+  function Person(name, age) {
+      this.name = name;
+      this.age = age;
+  }
+
+  function Company(name, topAgeWorker) {
+      this.name = name;
+      this.topAgeWorker = topAgeWorker;
+  }
+  function a(){
+      const VALUES = new Addition(7, 8);
+      document.write(VALUES.loadValue1());
+      document.write("</br>");
+      document.write(VALUES.loadValue2());
+      document.write("</br>");
+      document.write(VALUES.result());
+      document.write("</br>");
+  }
+
+  function b(){
+      const COMPANY = new Company("Samsung",50);
+      const person1 = new Person("Andres",19);
+      const person2 = new Person("Josep",70);
+
+      if (person1.age>COMPANY.topAgeWorker) {
+          document.write("Person "+person1.name+" cant work on "+COMPANY.name+" because age is higher than "+COMPANY.topAgeWorker);
+          document.write("</br>");
+      } else {
+          document.write("Person "+person1.name+" can work on "+COMPANY.name+" because age is lower than "+COMPANY.topAgeWorker);
+          document.write("</br>");
+      }
+      if (person2.age>COMPANY.topAgeWorker) {
+          document.write("Person "+person2.name+" cant work on "+COMPANY.name+" because age is higher than "+COMPANY.topAgeWorker);
+          document.write("</br>");
+      } else {
+          document.write("Person "+person2.name+" can work on "+COMPANY.name+" because age is lower than "+COMPANY.topAgeWorker);
+          document.write("</br>");
+      }
   }
 </script>
 <button id="a" onclick="a()">Result A</button>
