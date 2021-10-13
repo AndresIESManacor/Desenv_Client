@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Cars</title>
+    <link rel="stylesheet" href="car.css">
+    <script src="car.js"></script>
+</head>
+<script>
+    var list = [];
+    list[0] = new Car("4595960CL","PEUGEOT","blue",40000);
+    list[1] = new Car("4535334LT","SEAT","yellow",20000);
+
+    function printList(){
+        var txt="";
+        for (let i = 0; i < list.length; i++) {
+            txt+="<li>"+list[i].info()+"</li>";
+        }
+        return txt;
+    }
+
+    function createCar(){
+        return new Car(document.getElementById("Enrollment").value, document.getElementById("Model").value, document.getElementById("Price").value, document.getElementById("Color").value,)
+    }
+
+    function insertStart(){
+        var car = createCar();
+        list.unshift(car);
+    }
+</script>
+<body>
+    <h3>List of Cars</h3>
+    <p><span id="numTotalCars">0</span> cars</p>
+    <ol id="list">
+    </ol>
+    <hr/>
+    Enrollment: <input type="text" id="Enrollment"/>
+    Model: <input type="text" id="Model"/>
+    Price: <input type="text" id="Price"/>
+    Color: <input type="text" id="Color"/>
+    <hr/>
+    <button onclick="insertStart()">INSERT</button>
+    <button onclick=""></button>
+    <button onclick=""></button>
+    <button onclick=""></button>
+    <button onclick=""></button>
+    <button onclick=""></button>
+    <button onclick=""></button>
+</body>
+<script>
+    document.getElementById("list").innerHTML = printList();
+    document.getElementById("numTotalCars").innerHTML = list.length;
+</script>
+</html>
