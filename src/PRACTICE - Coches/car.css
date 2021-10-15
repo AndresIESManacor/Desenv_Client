@@ -1,0 +1,37 @@
+* {
+    margin: 3px;
+}
+#insertStart , #insertFinal{
+    background: dodgerblue;
+    opacity: 0.7;
+    border: solid black 2px;
+}
+
+#deleteStart, #deleteFinal {
+    background: red;
+    opacity: 0.7;
+    border: solid black 2px;
+}
+
+#orderPriceUp, #orderPriceDown {
+    background: green;
+    opacity: 0.7;
+    border: solid black 2px;
+}
+
+#haveSEAT , #howManyReds {
+    background: yellow;
+    opacity: 0.7;
+    border: solid black 2px;
+}
+
+#eurosToDollar, #dollarToEuros {
+    background: pink;
+    opacity: 0.7;
+    border: solid black 2px;
+}
+
+button {
+    height: 30px;
+    width: 280px;
+}
