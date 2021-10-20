@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    /*
+a) Highlight the row of a table when the mouse cursor is over.
+     */
+    function onMouseOver(thing){
+        thing.bgColor="#F0FFF0";
+    }
+    function onMouseOut(thing){
+        thing.bgColor="#FFFFFF";
+    }
+</script>
+<body>
+<table border="1">
+    <tr onMouseOver="onMouseOver(this)" onMouseOut="onMouseOut(this)">
+        <td>1</td>
+        <td>11</td>
+        <td>111</td>
+    </tr>
+    <tr onMouseOver="onMouseOver(this)" onMouseOut="onMouseOut(this)">
+        <td>1</td>
+        <td>11</td>
+        <td>111</td>
+    </tr>
+    <tr onMouseOver="onMouseOver(this)" onMouseOut="onMouseOut(this)">
+        <td>1</td>
+        <td>11</td>
+        <td>111</td>
+    </tr>
+    <tr onMouseOver="onMouseOver(this)" onMouseOut="onMouseOut(this)">
+        <td>1</td>
+        <td>11</td>
+        <td>111</td>
+    </tr>
+</table>
+</body>
+</html>
