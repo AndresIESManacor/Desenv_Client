@@ -6,12 +6,15 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
-
+<a><strong>Strong</strong> this is not strong</a><br>
+<a>this is not strong<strong>Strong</strong></a><br>
 </body>
 <script>
     /*-- a) Create a web page with some words using <strong> element. When you click on them, the words must be hidden. --*/
     $(document).ready(function() {
-
+        $("strong").click(function (){
+           $(this).hide();
+        });
     });
 </script>
 </html>
