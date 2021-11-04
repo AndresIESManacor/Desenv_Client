@@ -8,8 +8,12 @@
     /*
 a) Press a button and then open a window with width = 600 pixels and height = 300 pixels. This new window must have a button to close itself.
      */
+    function openWindow() {
+        var w=open();
+        w.document.write("<button type='button' onclick='window.close()'>Cerrar</button> <br>");
+    }
 </script>
 <body>
-
+<button type="button" onclick="openWindow()">Open Window</button>
 </body>
 </html>

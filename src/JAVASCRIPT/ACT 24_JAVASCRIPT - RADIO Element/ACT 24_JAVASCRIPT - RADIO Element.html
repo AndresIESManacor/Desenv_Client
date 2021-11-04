@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+    a) Select from two RADIO elements: 1) Older than 18, or 2) Younger than 18. Finally when we press a button an alert message must appear informing about if we can enter to the site or not.
+   */
+  function show(){
+      if (document.getElementById("Adult").checked) {
+          alert("You want to enter?"+" Adult ");
+      }
+      if (document.getElementById("Child").checked) {
+          alert("You want to enter?"+" Child");
+      }
+  }
+</script>
+<form>
+    <input type="radio" id="Adult">Older than 18<br/>
+    <input type="radio" id="Child">Younger than 18<br/>
+    <input type="button" value="Show" onClick="show()">
+</form>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    div {
+        border: solid black 2px;
+        margin: 10px;
+        padding: 5px;
+    }
+
+    button {
+        margin-left: 40%;
+    }
+</style>
+<body>
+<script>
+    /*
+    a) Select from different kinf of pizzas (Pepperoni 6€, Quatro Formaggi 5€, Procciuto 4€,...) using a SELECT element and when one option is selected write its price inside a TEXT element.
+
+b) Generate a cost estimation for a computer using 3 different SELECT elements which allow us to select :
+
+
+Processor (Intel I3 - $400, Intel I5 $600, Intel I7 $800).
+Monitor (Samsung 20' - $250, Samsung 22' - $350, Samsung 26' - $550)
+Hard Disk (500 Gb - $300, 1 Tb - $440, 3 Tb - $500)
+
+When we press the button Calculate the final cost is shown in a TEXT element.
+
+c) Select from different kinf of pizzas (Pepperoni 6€, Quatro Formaggi 5€, Procciuto 4€,...) using a SELECT element and enter how many pizzas we want in a TEXT element.
+When we press the button Calculate the final cost is shown in another TEXT element.
+
+d) Generate an exam with 4 questions. Every question has 4 possible options and only one of them is right. Use a SELECT element for each question. There must be a button to calculate the final mark of the exam and show an alert message with the final mark.
+     */
+    function pizza() {
+        var sel = document.getElementById("select1").value;
+        document.write(sel+"€");
+    }
+
+    function computer(){
+        var sel1 = document.getElementById("select2").value;
+        var sel2 = document.getElementById("select3").value;
+        var sel3 = document.getElementById("select4").value;
+
+        document.write((parseInt(sel1)+parseInt(sel2)+parseInt(sel3))+"€");
+    }
+
+    function pizzaQuantity() {
+        var sel = document.getElementById("select5").value;
+        var quantity = document.getElementById("quantityPizza").value;
+        document.write((sel*quantity)+"€");
+    }
+
+    function examResult(){
+        var resultQ1 = document.getElementById("q1").value;
+        var resultQ2 = document.getElementById("q2").value;
+        var resultQ3 = document.getElementById("q3").value;
+        var resultQ4 = document.getElementById("q4").value;
+        const results = [resultQ1, resultQ2, resultQ3, resultQ4];
+
+        var resultExam = 0;
+        for (let i = 0; i < results.length; i++) {
+            if (parseInt(results[i])===0) {
+                resultExam++;
+            }
+        }
+        alert(resultExam*2.5)
+    }
+</script>
+<div>
+    <div>
+        <form style="padding-left: 10px">
+            Pizzas
+            <select id="select1" onChange="pizza()">
+                <option value="6">Peperoni</option>
+                <option value=5>Quatro Formaggi</option>
+                <option value="4">Procciuto</option>
+            </select>
+        </form>
+    </div>
+    <div>
+        <form>
+            Processor
+            <select id="select2">
+                <option value="400">IntelI3</option>
+                <option value="600">IntelI5</option>
+                <option value="800">IntelI7</option>
+            </select>
+        </form>
+        </form>
+        <form>
+            Monitor
+            <select id="select3">
+                <option value="250">Samsung 20</option>
+                <option value="350">Samsung 22</option>
+                <option value="550">Samsung 26</option>
+            </select>
+        </form>
+        <form>
+            Hard Disk
+            <select id="select4">
+                <option value="300">500 GB</option>
+                <option value="440">1 TB</option>
+                <option value="500">3 TB</option>
+            </select>
+        </form>
+        <button type="button" onclick="computer()">Estimation</button>
+    </div>
+    <div>
+        <form style="padding-left: 10px">
+            Pizzas Quantity
+            <select id="select5">
+                <option value="6">Peperoni</option>
+                <option value=5>Quatro Formaggi</option>
+                <option value="4">Procciuto</option>
+            </select>
+        </form>
+        <input type="text" id="quantityPizza"><br>
+        <button type="button" onclick="pizzaQuantity()">Result</button>
+    </div>
+    <div>
+        Question 1:
+        <form style="padding-left: 10px">
+            Quien es el mas guapo?
+            <select id="q1">
+                <option value="0">Andres</option>
+                <option value="1">Pep</option>
+                <option value="1">Jose Andres</option>
+            </select>
+        </form>
+        Question 2:
+        <form style="padding-left: 10px">
+            Quien es el presidente de mi casa?
+            <select id="q2">
+                <option value="1">Hijo</option>
+                <option value="1">Mama</option>
+                <option value="0">Papa</option>
+            </select>
+        </form>
+        Question 3:
+        <form style="padding-left: 10px">
+            Que tipo de musica le gusta a Andres?
+            <select id="q3">
+                <option value="1">Rock</option>
+                <option value="0">Las dos</option>
+                <option value="1">Nightcore</option>
+            </select>
+        </form>
+        Question 4:
+        <form style="padding-left: 10px">
+            Quanto te a costado hacer esto?
+            <select id="q4">
+                <option value="1">Poco</option>
+                <option value="1">Mucho</option>
+                <option value="0">Bueno es trabajo</option>
+            </select>
+        </form>
+        <button type="button" onclick="examResult()">Result Exam</button>
+    </div>
+</div>
+</body>
+</html>

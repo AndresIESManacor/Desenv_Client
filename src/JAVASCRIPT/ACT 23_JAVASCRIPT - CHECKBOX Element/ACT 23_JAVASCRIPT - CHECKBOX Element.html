@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    a) Check three different checkbox elements (Football, Tennis, and Karate). Finally when we press a button an alert message must appear showing the selected sports.
+     */
+    function result() {
+        var text = "";
+        if (document.getElementById("football").checked) {
+            text += "[Football]";
+        }
+        if (document.getElementById("Tennis").checked) {
+            text += "[Tennis]";
+        }
+        if (document.getElementById("Karate").checked) {
+            text += "[Karate]";
+        }
+        alert("You selected "+text)
+    }
+</script>
+    <label><input type="checkbox" id="football" value="football"/>Football</label>
+    <label><input type="checkbox" id="Tennis" value="Tennis"/>Tennis</label>
+    <label><input type="checkbox" id="Karate" value="Karate"/>Karate</label>
+    <button type="button" onclick="result()">Result</button>
+</body>
+</html>

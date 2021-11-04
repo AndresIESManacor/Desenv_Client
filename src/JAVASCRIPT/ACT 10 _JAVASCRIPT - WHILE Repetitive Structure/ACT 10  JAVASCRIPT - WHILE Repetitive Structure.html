@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+i) Enter 5 numbers and then print how many numbers are pair and how many numbers are odd. Use the operator %.
+   */
+
+  function a(){
+    var first = 1;
+
+    while (first!==50) {
+      document.write(first);
+      document.write("</br>");
+      first++;
+    }
+    while (first!==0) {
+      document.write(first);
+      document.write("</br>");
+      first--;
+    }
+    while (first!==-51) {
+      document.write(first);
+      document.write("</br>");
+      first--;
+    }
+  }
+
+  function b(){
+    var int = 2;
+    while(int!==100) {
+      if (int%2===0) {
+        document.write(int);
+        document.write("</br>");
+      }
+      int++;
+    }
+  }
+
+  function c() {
+    var number = 1;
+    var num = 11;
+
+    while (number!==25) {
+      if ((num*number)>199){
+        document.write((num*number)+2);
+        document.write("</br>");
+        number++;
+      } else if ((num*number)>99) {
+        document.write((num*number)+1);
+        document.write("</br>");
+        number++;
+      } else {
+        document.write(num*number);
+        document.write("</br>");
+        number++;
+      }
+    }
+  }
+  function d(){
+    var num = 7;
+    var sum = 1;
+
+    while (sum!==11) {
+      document.write(num*sum);
+      document.write("</br>");
+      sum++;
+    }
+  }
+
+  function e(){
+    var numAlumn = 1;
+    var markAlumn;
+
+    while (numAlumn!==11) {
+      markAlumn = prompt("Select the mark of the student " + numAlumn);
+      if (markAlumn>=5) {
+        document.write("Student "+numAlumn+" passed");
+        document.write("</br>");
+      } else {
+        document.write("Student "+numAlumn+" not passed");
+        document.write("</br>");
+      }
+      numAlumn++;
+    }
+  }
+
+  function f(){
+    var numHeight = 5;
+    var sum = 1;
+    var sumHeight = 0;
+
+    while (numHeight!==0) {
+      var height = prompt("Select the height "+sum);
+      sumHeight = sumHeight+height;
+      numHeight--; sum++;
+    }
+    document.getElementById("f").innerHTML = "Avarage "+(sumHeight%5);
+  }
+
+  function g(){
+    var numEmployers = 5;
+    var sumSalary = 0;
+    var moreThan500LessThan1000 = 0;
+    var moreThan1000 = 0;
+
+    while (numEmployers!==0) {
+      var salary = prompt("Select the salary");
+      if (salary>500 && salary<1000) {
+        moreThan500LessThan1000++;
+      }
+      if (salary>1000){
+        moreThan1000++;
+      }
+      sumSalary = sumSalary+parseInt(salary);
+      numEmployers--;
+    }
+
+    document.write("Employers with the salary more than 1000 "+moreThan1000);
+    document.write("</br>");
+    document.write("Employers with the salary more than 500 but less than 1000 "+moreThan500LessThan1000);
+    document.write("</br>");
+    document.write("All the salary on one "+sumSalary);
+  }
+
+  function h() {
+    var numList = 2;
+    var num = 3;
+    var sumList1 = 0;
+    var sumList2 = 0;
+
+    while (numList!==0) {
+      while (num!==0) {
+        var number = prompt("Select a number");
+        if (numList===2) {
+          sumList1 = sumList1+parseInt(number);
+        }
+        if (numList===1) {
+          sumList2 = sumList2+parseInt(number);
+        }
+        num--;
+      }
+      num = 3;
+      numList--;
+    }
+
+    if (sumList1>sumList2) {
+      document.getElementById("h").innerHTML = "The list 1 is the bigger with "+sumList1;
+    } else {
+      document.getElementById("h").innerHTML = "The list 2 is the bigger with "+sumList2;
+    }
+  }
+
+  function i(){
+    var numIntent = 5;
+    var numOdd = 0;
+    var numPar = 0;
+
+    while (numIntent!==0) {
+      var number = prompt("Select a number");
+      if (number%2===0) {
+        numPar++;
+      } else {
+        numOdd++;
+      }
+      numIntent--;
+    }
+    document.getElementById("i").innerHTML = "Numbers odds "+numOdd;
+  }
+
+</script>
+<button onclick="a()">Result A</button>
+<button onclick="b()">Result B</button>
+<button onclick="c()">Result C</button>
+<button onclick="d()">Result D</button>
+<button onclick="e()">Result E</button>
+<button id="f" onclick="f()">Result F</button>
+<button onclick="g()">Result G</button>
+<button id="h" onclick="h()">Result H</button>
+<button id="i" onclick="i()">Result I</button>
+</body>
+</html>
