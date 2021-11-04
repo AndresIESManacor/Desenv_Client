@@ -6,6 +6,16 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
+<h1>Titulo</h1>
+<p>Esto seria el continido</p>
+<p>Del newspapar pero bueno</p>
+<p>Tengo que escribir algo</p>
+<p>Porque sino es feo y no lo termino</p>
+<p>Ni para hoy ni para mañana</p>
+
+<input type="button" id="a1" value="Small">
+<input type="button" id="b1" value="Medium">
+<input type="button" id="c1" value="Big">
 
 </body>
 <script>
@@ -14,7 +24,15 @@ And three different buttons to change the text font size of the content in the o
 to small (10px), medium (15px) or big (20px) respectively. --*/
 
     $(document).ready(function() {
-
+        $("#a1").click(function (){
+           $("p").odd().css("font-size","10px");
+        });
+        $("#b1").click(function (){
+            $("p").odd().css("font-size","15px");
+        });
+        $("#c1").click(function (){
+            $("p").odd().css("font-size","20px");
+        });
     });
 </script>
 </html>
