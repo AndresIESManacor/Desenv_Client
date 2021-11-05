@@ -5,15 +5,31 @@
     <title>Title</title>
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<style>
+    .backBlue {
+        color: blue;
+    }
+</style>
 <body>
-
+<form>
+    <label>
+        <input class="backBlue" type="text">
+    </label>
+</form>
 </body>
 <script>
     /*-- a) Create a web page with two text elements (input type="text") in a form.
 Set their font colour to blue. When an input element get the focus, its font colour must change to red.  --*/
 
     $(document).ready(function() {
-
+        var x = $(".backBlue");
+        var color = x.css("color");
+        x.focusin(function (){
+           $(this).css("color","red")
+        });
+        x.focusout(function (){
+            $(this).css("color",color)
+        });
     });
 </script>
 </html>

@@ -6,13 +6,25 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
-
+<table style="border: black solid 3px">
+    <tr>
+        <td>Columna 1</td>
+        <td>Columna 2</td>
+    </tr>
+    <tr>
+        <td>HOLA SOY 1</td>
+        <td>HOLA SOY 2</td>
+    </tr>
+</table>
 </body>
 <script>
     /*-- a) Create a table with 2 rows and 2 columns.
         Change the colour of cells when the mouse cursor moves over and out. --*/
     $(document).ready(function() {
-
+        var x = $("td");
+        x.hover(function (){
+            $(this).css("background-color","blue")},function (){$(this).css("background-color","yellow")
+        });
     });
 </script>
 </html>

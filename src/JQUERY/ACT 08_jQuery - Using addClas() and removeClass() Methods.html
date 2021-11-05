@@ -12,12 +12,6 @@
     .styleHead{
         color: yellow;
     }
-    .styleBody2{
-        color: blue;
-    }
-    .styleHead2{
-        color: yellow;
-    }
 </style>
 <body>
 <table>
@@ -50,12 +44,12 @@ Using two buttons link and unlink the two styles or classes. --*/
 
     $(document).ready(function() {
         $("#ba").click(function (){
-            $(".styleHead").addClass("styleHead");
-            $(".styleBody").addClass("styleBody");
+            $("thead").addClass("styleHead");
+            $("tbody").addClass("styleBody");
         });
         $("#br").click(function (){
-            $(".styleHead").removeClass("styleHead");
-            $(".styleBody").removeClass("styleBody");
+            $("thead").removeClass("styleHead");
+            $("tbody").removeClass("styleBody");
         });
     });
 </script>
