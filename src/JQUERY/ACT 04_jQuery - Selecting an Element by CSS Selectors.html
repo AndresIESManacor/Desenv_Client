@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 </head>
-<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
 <table id="table1">
     <tr>
@@ -40,7 +40,6 @@
         <td>Mexico</td>
     </tr>
 </table>
-</body>
 <script>
     /*-- a) Create a web page with two tables. Every table with 3 rows.
 And write a script using jQuery to change the background colour when you click on a row y in the first table,
@@ -48,11 +47,12 @@ and to change the text size in the second table. --*/
 
     $(document).ready(function() {
         $("#table1").click(function (){
-           $(this).css("background-color","#ffff00");
+            $(this).css("background-color","#ffff00");
         });
         $("#table2").click(function () {
             $(this).css("font-size", "33px");
         });
     });
 </script>
+</body>
 </html>
