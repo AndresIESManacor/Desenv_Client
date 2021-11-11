@@ -6,14 +6,35 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
-
+<div id="div1">
+    <p id="p1">P 1</p>
+    <p id="p2">P 2</p>
+    <p id="p6">P 6</p>
+</div>
+<div id="div2">
+    <p id="p3">P 1</p>
+    <p id="p4">P 2</p>
+    <p id="p5">P 6</p>
+</div>
 </body>
 <script>
     /*-- a) Create a DIV with some paragraphs.
         When you press on this div, it must be faded out. And when it is completely hidden,
         another div must be faded in. --*/
     $(document).ready(function() {
+        var div1 = $("#div1");
+        var div2 = $("#div2");
 
+        div2.hide();
+
+        div1.click(function() {
+            $(this).fadeOut(1000);
+            div2.fadeIn(3000);
+        });
+        div2.click(function() {
+            $(this).fadeOut(3000);
+            div1.fadeIn(3000);
+        });
     });
 </script>
 </html>

@@ -6,13 +6,21 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
-
+<ul>
+    <a>.esLink 1</a>
+    <a>Link 2</a>
+    <a>Link 5.es</a>
+    <a>Link.es 6</a>
+    <a>Link 7</a>
+</ul>
 </body>
 <script>
     /*--  a) Create a page with a list of links (<a>).
         Create a script to highlight all the links to subdomains .es. Use the indexOf String method. --*/
     $(document).ready(function() {
-
+        $("ul a").each(function(){
+            $(this).text($(this).text().indexOf(".es"));
+        });
     });
 </script>
 </html>
