@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magatzem Andres</title>
+      <script src="Paquete.js"></script>
+    <script src="Estanteria.js"></script>
+    <script src="Almacen.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+  <div id="content"></div>
+  <div>
+    <div class="form-group row">
+      <label for="posicio" class="col-sm-2 col-form-label">Posició: </label>
+      <div class="col-sm-6">
+        <select id="posicio" class="form-control">
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="codi" class="col-sm-2 col-form-label">Codi Paquet: </label>
+      <div class="col-sm-6"><input type="text" id="codi"  class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="posicio" class="col-sm-2 col-form-label">Destinatari: </label>
+      <div class="col-sm-6">
+        <input type="text" id="destinatari"  class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="pes" class="col-sm-2 col-form-label">Pes (Kg): </label>
+      <div class="col-sm-6">
+        <input type="text" id="pes"  class="form-control" />
+      </div>
+    </div>
+    <button class="btn btn-primary" id="b1" onclick="entrada();">ENTRADA</button>
+    <button class="btn btn-danger" id="b2" onclick="sortida();">SORTIDA</button>
+    <button class="btn btn-secondary" id="b3" onclick="quants();">NUM.LLIURES</button>
+    <button class="btn btn-secondary" id="b4" onclick="calcula();">CALCULAR PVP</button>
+    <button class="btn btn-secondary" id="b5" onclick="ordena();">ORDENA x PES</button>
+    <button class="btn btn-secondary" id="b6" onclick="mesVell();">MÉS VELL</button>
+  </div>
+  <br/>
+  <div id="log" class="alert alert-primary"></div>
+</div>
+<script>
+
+  var arrayMagatzem = new Almacen(10);
+  arrayMagatzem.inicializarAlmacen();
+  arrayMagatzem.mostrarTabla();
+
+  optionsPosicio();
+
+  function optionsPosicio(){
+    for(var i=0; i<arrayMagatzem.estanteria.length; i++){
+      var option = $("<option></option>").val(i).text(i);
+      $("#posicio").append(option);
+    }
+  }
+
+  function quants(){
+
+    var lliures = arrayMagatzem.getNumeroLibres();
+    var ocupats = arrayMagatzem.getNumOcupados();
+
+    $("#log").html($("<p></p>").text(" Estants Lliures: " + lliures + ", Ocupats: "+ocupats+")"));
+
+    alert("NUM. ESTANTS LLIURES: " + lliures +" \n"+
+            "NUM. ESTANTS OCUPATS: " + ocupats);
+  }
+
+  function entrada(){
+
+    $("#log").html("");
+
+    var posicion = $("#posicio").val();
+    var id = $("#codi").val();
+    var destino = $("#destinatari").val();
+    var peso = $("#pes").val();
+
+    var paquete = new Paquet(id, destino, peso);
+    arrayMagatzem.anadirPaquete(paquete, posicion);
+
+  }
+
+  function sortida(){
+    $("#log").html("");
+    var posicion = $("#posicio").val();
+    var p = arrayMagatzem.recogerPaquete(posicion);
+  }
+
+  function calcula(){
+    $("#log").html("");
+    arrayMagatzem.calcularPrecios();
+  }
+
+  function ordena(){
+    $("#log").html("");
+    arrayMagatzem.ordenarPorPeso();
+    arrayMagatzem.mostrarTabla();
+  }
+
+  function mesVell(){
+    $("#log").html("");
+    var p = arrayMagatzem.paqueteMasViejo();
+    if(p!=null){
+      $("#log").append(p.getInfo());
+    }
+  }
+</script>
+</body>
+</html>
