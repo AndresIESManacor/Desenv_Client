@@ -1,0 +1,32 @@
+[
+  {
+    "name": "PACO",
+    "age": "44",
+    "city": "PALMA"
+  },
+  {
+    "name": "MARIA",
+    "age": "33",
+    "city": "INCA"
+  },
+  {
+    "name": "JOSE",
+    "age": "25",
+    "city": "INCA"
+  },
+  {
+    "name": "JOAN",
+    "age": "51",
+    "city": "MANACOR"
+  },
+  {
+    "name": "ALICIA",
+    "age": "22",
+    "city": "MANACOR"
+  },
+  {
+    "name": "PETER",
+    "age": "19",
+    "city": "SOLLER"
+  }
+]
