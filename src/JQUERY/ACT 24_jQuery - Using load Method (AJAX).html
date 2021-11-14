@@ -6,14 +6,27 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
+<input id="button1" type="button" value="Button 1">
+<input id="button2" type="button" value="Button 2">
+<div id="loadAJAX">
 
+</div>
 </body>
 <script>
     /*-- a) Write a Javascript script that loads the information from
-        two different txt files (fiile1.txt, file2.txt) inside a div container using the jQuery
+        two different txt files (file1.txt, file2.txt) inside a div container using the jQuery
         load method depending on which of the buttons #button1 or #button2 is clicked. --*/
     $(document).ready(function() {
+        var button1 = $("#button1");
+        var button2 = $("#button2");
+        var content = $("#loadAJAX");
 
+        button1.click(function () {
+            content.load("file1.txt");
+        });
+        button2.click(function () {
+            content.load("file2.txt");
+        });
     });
 </script>
 </html>

@@ -6,7 +6,22 @@
 </head>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <body>
+<div>
+    <form style="padding-left: 10px">
+        Cities:
+        <select id="selectCity">
+            <option value="Manacor">MANACOR</option>
+            <option value="Palma">PALMA</option>
+            <option value="Inca">INCA</option>
+            <option value="Soller">SOLLER</option>
+            <option value="Arta">ARTA</option>
+        </select>
+        <input id="submit" type="button" value="Submit">
+    </form>
+    <ul id="list">
 
+    </ul>
+</div>
 </body>
 <script>
     /*-- a) Write a Javascript script that uses a SELECT form field with various
@@ -14,7 +29,15 @@
         from a JSON file with the company workers information (name, age  and city).
         The filtered result must be shown in an unordered list UL. Use a JSON file as the following one.  --*/
     $(document).ready(function() {
-
+         $("#submit").click(function () {
+             var selected = $("#selectCity").val();
+             $.getJSON("act26.php",{city: selected},dataArrived)
+             document.write(selected);
+         });
+        function dataArrived(data) {
+            $("#result").html("Name:"+data.name+"<br>"+"Age:"+data.age+"<br>"+"City:"+data.city);
+        }
     });
+
 </script>
 </html>
