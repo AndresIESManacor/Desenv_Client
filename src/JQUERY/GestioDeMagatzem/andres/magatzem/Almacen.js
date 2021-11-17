@@ -1,73 +1,81 @@
 class Almacen {
+    //COMPLETADO
     constructor(numero) {
         this.numeroEstanteria = numero;
         this.estanteria = [];
     }
 
+    //COMPLETADO
     inicializarAlmacen() {
         for (var i = 0; i < this.numeroEstanteria; i++) {
             this.estanteria[i] = new Estanteria("Estanteria "+i)
         }
     }
 
-    anadirPaquete(paquete, posicion) {
-        $("#log").append("<p>Realizando operacion en el Almacen</p>");
+    //COMPLETADO
+    anadirPaqueteConPasicion(paquete, posicion) {
         this.estanteria[posicion].anadirPaquete(paquete);
-        this.mostrarTabla();
+        $("#log").append("<p>Operacion realizada</p>");
+        this.mostrarArray();
     }
 
     recogerPaquete(numeroEstanteria){
         $("#log").append("<p>Saliendo del paquete al Almacen ...</p>");
-        var paquete = this.estanteria[numeroEstanteria].paquet;
+        var paquete = this.estanteria[numeroEstanteria].paquete;
         this.estanteria[numeroEstanteria].recogerPaquete();
-        this.mostrarTabla();
+        this.mostrarArray();
         return paquete;
     }
 
+    //COMPLETADO
     getNumeroLibres(){
         var index = 0;
         for(var i=0; i<this.estanteria.length; i++){
-            if(this.estanteria[i].paquet == null){
+            if(this.estanteria[i].paquete == null){
                 index++;
+                console.log(index);
             }
         }
         return index;
     }
 
+    //COMPLETADO
     getNumOcupados(){
         return this.numeroEstanteria - this.getNumeroLibres();
     }
 
-    mostrarTabla(){
-        //Copied Paste//
+    //COMPLETADO
+    mostrarArray(){
 
-        var oH2 = $("<h2></h2").addClass("text-center").text("MAGATZEM ("+this.getNumLliures()+")");
-        var oTABLE = $("<table></table>").addClass("table table-bordered");
+        //Principio de la tabla
+        var table = $("<table></table>");
+        var head = $("<thead></thead>");
+        var tr = $("<tr></tr>");
 
-        // Crear zona THEAD
-        var oTHEAD = $("<thead></thead>").addClass("thead-dark");
-        var oTR1   = $("<tr></tr>");
         for(var i=0; i<this.numeroEstanteria; i++){
-            var oTH = $("<th></th>").attr("width", "100px").text(i);
-            oTR1.append(oTH);
+            var oTH = $("<th></th>");
+            tr.append(oTH);
         }
-        oTHEAD.append(oTR1);
+        head.append(tr);
 
-        // Crear TBODY
-        var oTBODY = $("<tbody></tbody>");
-        var oTR2   = $("<tr></tr>");
+        var body = $("<tbody></tbody>");
+        var tr2   = $("<tr></tr>");
+
         for(var i=0; i<this.numeroEstanteria; i++){
-            var e = this.estanteria[i];
-            var oTD = $("<td></td>").attr("width", "100px").html(e.printInfo());
-            oTR2.append(oTD);
+            var estanteriaElement = this.estanteria[i];
+            var td = $("<td></td>").html(estanteriaElement.printInfo());
+            tr2.append(td);
         }
-        oTBODY.append(oTR2);
+        body.append(tr2);
 
-        // Afegeix a TABLE el THEAD i TBODY
-        oTABLE.append(oTHEAD, oTBODY);
+        table.append(head,body);
 
-        // Afegeix H2 i TABLE a DIV
-        $("#content").html("").append(oH2, oTABLE);
+        this.inizialitzeNumberMagatzem();
+        $("#tableShow").html("").append(table);
+    }
+    // COMPLETADO
+    inizialitzeNumberMagatzem() {
+        $("#number").text("("+this.getNumeroLibres()+")");
     }
 
 

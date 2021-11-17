@@ -1,4 +1,5 @@
 class Estanteria {
+    // COMPLETADO
     constructor(id) {
         this.identificador = id;
         this.paquete = null;
@@ -6,8 +7,8 @@ class Estanteria {
         this.salida = null;
     }
 
+    // COMPLETADO
     anadirPaquete(paquete){
-        $("#log").append($("<p></p>").text("Añadiendo el paquete a la Estanteria ..."));
         this.paquete = paquete;
         this.entrada = new Date();
     }
