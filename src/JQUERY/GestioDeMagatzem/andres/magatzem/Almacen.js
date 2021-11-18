@@ -14,15 +14,24 @@ class Almacen {
 
     //COMPLETADO
     anadirPaqueteConPasicion(paquete, posicion) {
+        if (paquete.id==null) {
+            paquete.id = 0;
+        }
+        if (paquete.description==null) {
+            paquete.setDescrition("No selecionada");
+        }
+        if (paquete.peso==null) {
+            paquete.setPeso("0");
+        }
         this.estanteria[posicion].anadirPaquete(paquete);
         $("#log").append("<p>Operacion realizada</p>");
         this.mostrarArray();
     }
 
+    // COMPLETADO
     recogerPaquete(numeroEstanteria){
-        $("#log").append("<p>Saliendo del paquete al Almacen ...</p>");
         var paquete = this.estanteria[numeroEstanteria].paquete;
-        this.estanteria[numeroEstanteria].recogerPaquete();
+        this.estanteria[numeroEstanteria].eliminarPaquete();
         this.mostrarArray();
         return paquete;
     }

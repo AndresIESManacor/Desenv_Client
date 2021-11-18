@@ -8,9 +8,17 @@ class Paquete {
         this.peso = peso;
     }
 
+    setDescrition(descripcion){
+        this.destinatario = descripcion;
+    }
+
+    setPeso(peso) {
+        this.peso = peso;
+    }
+
     // COMPLETADO
     getInfo(){
-        return this.id+"<br/>"+this.destinatario+"<br/>"+this.peso+"Kg";
+        return "<br>"+this.id+"<br/>"+this.destinatario+"<br/>"+this.peso+"Kg<br>";
     }
 
 }

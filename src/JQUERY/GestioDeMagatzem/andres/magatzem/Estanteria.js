@@ -13,10 +13,10 @@ class Estanteria {
         this.entrada = new Date();
     }
 
-    recogerPaquete(){
-        $("#log").append($("<p></p>").text("Quitando el paquete de la Estanteria ..."));
+    // COMPLETADO
+    eliminarPaquete(){
         this.paquete = null;
-        this.sortida = new Date();
+        this.sortida = null;
     }
     printInfo(){
 
