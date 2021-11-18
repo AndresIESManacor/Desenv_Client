@@ -149,6 +149,7 @@
   <input id="calcular" type="button" value="CALCULAR PVP">
   <input id="orderPeso" type="button" value="ORDENAR POR PESO">
   <input id="orderViejo" type="button" value="ORDENAR POR VIEJO">
+    <input id="reset" type="button" value="RESET">
 </div>
 <div id="log">
 
@@ -177,6 +178,7 @@
             var posicion = $("select[name=selectPosition]").find(":selected").val();
             var codiBarras = $("#codigoPaquete").val();
             var destino = $("#destinoPaquete").val();
+            console.log(destino)
             var peso = $("#pesoPaquete").val();
 
             // CREAMOS UN NUEVO PAQUETE CON LA INFORMACION y LLAMOS A LA FUNCION PARA AÑADIRLO
@@ -195,24 +197,25 @@
         });
 
         $("#numLibres").click(function () {
-            var libres = almacen.getNumeroLibres();
-            var ocupados = almacen.getNumOcupados();
-
-            var texto = "Numero libres = "+libres+"\n"+"Numeros ocupados = "+ocupados;
-            $("#log").text("Numero libres = "+libres+", Numeros ocupados = "+ocupados);
+            var texto = "Numero libres = "+almacen.getNumeroLibres()+"\n"+"Numeros ocupados = "+almacen.getNumOcupados();
+            $("#log").text(texto);
             alert(texto);
         });
 
         $("#calcular").click(function () {
-
+            almacen.calcularPrecio();
         });
 
         $("#orderPeso").click(function () {
-
+            almacen.ordenarPorPeso();
         });
 
         $("#orderViejo").click(function () {
+            almacen.paqueteMasViejo();
+        });
 
+        $("#reset").click(function () {
+           almacen.resetOrdenar();
         });
     });
 

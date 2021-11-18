@@ -14,13 +14,10 @@ class Almacen {
 
     //COMPLETADO
     anadirPaqueteConPasicion(paquete, posicion) {
-        if (paquete.id==null) {
-            paquete.id = 0;
+        if (paquete.codigo==null || paquete.codigo === "") {
+            paquete.setCodigo("00000");
         }
-        if (paquete.description==null) {
-            paquete.setDescrition("No selecionada");
-        }
-        if (paquete.peso==null) {
+        if (paquete.peso==null || paquete.peso === "") {
             paquete.setPeso("0");
         }
         this.estanteria[posicion].anadirPaquete(paquete);
@@ -42,7 +39,6 @@ class Almacen {
         for(var i=0; i<this.estanteria.length; i++){
             if(this.estanteria[i].paquete == null){
                 index++;
-                console.log(index);
             }
         }
         return index;
@@ -61,17 +57,17 @@ class Almacen {
         var head = $("<thead></thead>");
         var tr = $("<tr></tr>");
 
-        for(var i=0; i<this.numeroEstanteria; i++){
-            var oTH = $("<th></th>");
-            tr.append(oTH);
+        for(var x=0; x<this.numeroEstanteria; x++){
+            var th = $("<th></th>");
+            tr.append(th);
         }
         head.append(tr);
 
         var body = $("<tbody></tbody>");
         var tr2   = $("<tr></tr>");
 
-        for(var i=0; i<this.numeroEstanteria; i++){
-            var estanteriaElement = this.estanteria[i];
+        for(var y=0; y<this.numeroEstanteria; y++){
+            var estanteriaElement = this.estanteria[y];
             var td = $("<td></td>").html(estanteriaElement.printInfo());
             tr2.append(td);
         }
@@ -87,41 +83,60 @@ class Almacen {
         $("#number").text("("+this.getNumeroLibres()+")");
     }
 
-
-    calcularPrecios(){
-        $("#log").append($("<p></p>").text("Calculant preus al Magatzem ..."));
-        this.estanteria.forEach(calcularPrecioPaquete());
-    }
-
-    calcularPrecioPaquete(item, index, array){
-        if(item.paquet!=null){
-            var pvp = parseFloat(item.paquet.pes) * 0.75;
-            $("#log").append($("<p></p>").text("Preu paquet "+index+" és "+pvp+"€."));
-        }
-    }
-
-    ordenarPorPeso(){
-        $("#log").append($("<p></p>").text("Ordenant paquets al Magatzem ..."));
-        this.estanteria.sort(function(a, b){
-            var pesA = (a.paquet != null)? a.paquet.pes : 0;
-            var pesB = (b.paquet != null)? b.paquet.pes : 0;
-            return pesA - pesB;
-        });
-    }
-
-    paqueteMasViejo(){
-        $("#log").append($("<p></p>").text("Cercant el paquet més vell al Magatzem ..."));
-        var minTemps =  new Date();
-        var pMesVell = null;
-        for(var i=0; i<this.numeroEstanteria; i++){
-            if(this.estanteria[i].paquet!=null){
-                var p = this.estanteria[i].paquet;
-                if(this.estanteria[i].entrada < minTemps){
-                    pMesVell = p;
-                    minTemps = p.entrada;
-                }
+    // COMPLETADO
+    calcularPrecio(){
+        var text = "";
+        for (var i = 0; i < this.estanteria.length; i++) {
+            if(this.estanteria[i].paquete != null){
+                text += "<p>Precio del paquete del "+i+" es "+(parseFloat(this.estanteria[i].paquete.peso) * 0.75)+"$</p>";
             }
         }
-        return pMesVell;
+        $("#log").html(text);
+    }
+
+    // COMPLETADO
+    ordenarPorPeso() {
+        this.estanteria.sort(function (a, b){
+            var aPaquete = a;
+            var bPaquete = b;
+
+            if (bPaquete.paquete == null && aPaquete.paquete == null) {
+                return 1;
+            }
+            if (bPaquete.paquete == null) {
+                return -1;
+            }
+            if (aPaquete.paquete == null) {
+                return 1;
+            }
+            return aPaquete.paquete.peso - bPaquete.paquete.peso;
+        });
+        this.mostrarArray();
+    }
+
+    // COMPLETADO
+    resetOrdenar() {
+        this.estanteria.sort( (a,b) => a.identificador.localeCompare(b.identificador));
+        this.mostrarArray();
+    }
+
+    // COMPLETADO
+    paqueteMasViejo(){
+        this.estanteria.sort(function (a, b){
+            var aPaquete = a;
+            var bPaquete = b;
+
+            if (bPaquete.entrada == null && aPaquete.entrada == null) {
+                return 1;
+            }
+            if (bPaquete.entrada == null) {
+                return -1;
+            }
+            if (aPaquete.entrada == null) {
+                return 1;
+            }
+            return aPaquete.entrada - bPaquete.entrada;
+        });
+        this.mostrarArray();
     }
 }

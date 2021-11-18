@@ -2,23 +2,25 @@
 class Paquete {
 
     // COMPLETADO
-    constructor(id, destinatario, peso){
-        this.id = id;
+    constructor(codigo, destinatario, peso){
+        this.codigo = codigo;
         this.destinatario = destinatario;
         this.peso = peso;
     }
 
-    setDescrition(descripcion){
-        this.destinatario = descripcion;
+    // COMPLETADO
+    setCodigo(codigo) {
+        this.codigo = codigo;
     }
 
+    // COMPLETADO
     setPeso(peso) {
         this.peso = peso;
     }
 
     // COMPLETADO
     getInfo(){
-        return "<br>"+this.id+"<br/>"+this.destinatario+"<br/>"+this.peso+"Kg<br>";
+        return "<br>"+this.codigo+"<br/>"+this.destinatario+"<br/>"+this.peso+"Kg<br>";
     }
 
 }

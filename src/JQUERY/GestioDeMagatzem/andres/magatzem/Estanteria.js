@@ -4,7 +4,6 @@ class Estanteria {
         this.identificador = id;
         this.paquete = null;
         this.entrada = null;
-        this.salida = null;
     }
 
     // COMPLETADO
@@ -18,19 +17,20 @@ class Estanteria {
         this.paquete = null;
         this.sortida = null;
     }
-    printInfo(){
 
+    // COMPLETADO no he tocado casi nada porque no creo que necesite algun cambio
+    printInfo(){
         var paquetInfo ="";
         if(this.paquete != null){
             paquetInfo += this.paquete.getInfo() + "<br/>";
             paquetInfo += this.formatEntrada() + "<br/>";
         }
         else if(this.sortida!= null){
-            paquetInfo += "Sense paquete <br/>";
+            paquetInfo += "No hay Paquete <br/>";
             paquetInfo += this.formatSortida() + "<br/>";
         }
         else {
-            paquetInfo += "Sense paquet";
+            paquetInfo += "No hay paquete";
         }
 
         return "<b>"+ this.identificador + "</b><br/>"+ paquetInfo;
