@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RESTAURANTES>
+    <RESTAURANTE>
+        <ID>1</ID>
+        <NOMBRE>Restaurante Pablo</NOMBRE>
+        <POBLACION>Islas Baleares</POBLACION>
+        <TIPO>Mexicano</TIPO>
+        <CATEGORIA>2</CATEGORIA>
+    </RESTAURANTE>
+    <RESTAURANTE>
+        <ID>2</ID>
+        <NOMBRE>PeperonisRioto</NOMBRE>
+        <POBLACION>Valencia</POBLACION>
+        <TIPO>Italiano</TIPO>
+        <CATEGORIA>1</CATEGORIA>
+    </RESTAURANTE>
+    <RESTAURANTE>
+        <ID>3</ID>
+        <NOMBRE>Can Juan</NOMBRE>
+        <POBLACION>Madrid</POBLACION>
+        <TIPO>Carne</TIPO>
+        <CATEGORIA>3</CATEGORIA>
+    </RESTAURANTE>
+    <RESTAURANTE>
+        <ID>4</ID>
+        <NOMBRE>Manolos</NOMBRE>
+        <POBLACION>Barcelona</POBLACION>
+        <TIPO>Pescado</TIPO>
+        <CATEGORIA>3</CATEGORIA>
+    </RESTAURANTE>
+    <RESTAURANTE>
+        <ID>5</ID>
+        <NOMBRE>TirasRest</NOMBRE>
+        <POBLACION>Islas Baleares</POBLACION>
+        <TIPO>Carne</TIPO>
+        <CATEGORIA>1</CATEGORIA>
+    </RESTAURANTE>
+    <RESTAURANTE>
+        <ID>6</ID>
+        <NOMBRE>私は最高だ</NOMBRE>
+        <POBLACION>Islas Baleares</POBLACION>
+        <TIPO>Japones</TIPO>
+        <CATEGORIA>1</CATEGORIA>
+    </RESTAURANTE>
+</RESTAURANTES>
