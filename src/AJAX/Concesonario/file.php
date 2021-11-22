@@ -1,7 +1,7 @@
 <?php
 
 $conn = new mysqli("localhost", "root", "andres12345", "cotxos");
-$stmt = $conn->prepare("SELECT * FROM cotxos ORDER BY matricula");
+
 $stmt->execute();
 $result = $stmt->get_result();
 
