@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+        }
+        table, tr, th, td {
+            font-size: 32px;
+            border: skyblue solid 2px;
+        }
+        div {
+            text-align: center;
+            margin-left: 25%;
+        }
+    </style>
 </head>
-<body>
-<table id="table"></table>
+<body onload="loadDoc()">
+<h1>TABLE WITH XML</h1>
+<div>
+    <table id="table"></table>
+</div>
 <script>
     var readyStateReady = 4; var statusOkey = 200;
 
@@ -16,24 +34,36 @@
                 getParametresFromXML(xhttp);
             }
         };
-        xhttp.open("GET", "index.xml", true);
+        xhttp.open("GET", "Restaurantes.xml", true);
         xhttp.send();
     }
     function getParametresFromXML(xhttp) {
-        var i;
         var xmlDoc = xhttp.responseXML;
-        //console.log(xmlDoc);
-        var table="<tr><th>Artist</th><th>Title</th></tr>";
-        var xml = xmlDoc.getElementsByTagName("CD");
-        for (i = 0; i <xml.length; i++) {
-            table +=
-                "<tr><td>" +
-                xml[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
-                + "</td><td>" +
-                xml[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
-                + "</td></tr>";
+        var table="<tr><th>ID</th><th>NOMBRE</th><th>POBLACION</th><th>TIPO</th><th>CATEGORIA</th></tr>";
+        var xml = xmlDoc.getElementsByTagName("RESTAURANTE");
+        for (var i = 0; i <xml.length; i++) {
+            var categoria = returnCategoria(xml[i].getElementsByTagName("CATEGORIA")[0].childNodes[0].nodeValue);
+            table += "<tr>"+
+                "<td>" + xml[i].getElementsByTagName("ID")[0].childNodes[0].nodeValue+"</td>"+
+                "<td>" + xml[i].getElementsByTagName("NOMBRE")[0].childNodes[0].nodeValue+"</td>"+
+                "<td>" + xml[i].getElementsByTagName("POBLACION")[0].childNodes[0].nodeValue+"</td>"+
+                "<td>" + xml[i].getElementsByTagName("TIPO")[0].childNodes[0].nodeValue+"</td>"+
+                "<td>" + categoria +"</td>"+
+                "</tr>";
         }
         document.getElementById("table").innerHTML = table;
+    }
+
+    function returnCategoria(xmlTagName) {
+        var cat = xmlTagName;
+        if (parseInt(cat)===1) {
+            cat = "Muy Barato!";
+        } else if (parseInt(cat)===2) {
+            cat = "Barato!!";
+        } else if (parseInt(cat)===3) {
+            cat = "Caro!!!";
+        }
+        return cat;
     }
 </script>
 </body>
