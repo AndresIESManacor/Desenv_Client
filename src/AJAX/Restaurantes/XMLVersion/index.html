@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table id="table"></table>
+<script>
+    var readyStateReady = 4; var statusOkey = 200;
+
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === readyStateReady && this.status === statusOkey) {
+                getParametresFromXML(xhttp);
+            }
+        };
+        xhttp.open("GET", "index.xml", true);
+        xhttp.send();
+    }
+    function getParametresFromXML(xhttp) {
+        var i;
+        var xmlDoc = xhttp.responseXML;
+        //console.log(xmlDoc);
+        var table="<tr><th>Artist</th><th>Title</th></tr>";
+        var xml = xmlDoc.getElementsByTagName("CD");
+        for (i = 0; i <xml.length; i++) {
+            table +=
+                "<tr><td>" +
+                xml[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
+                + "</td><td>" +
+                xml[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
+                + "</td></tr>";
+        }
+        document.getElementById("table").innerHTML = table;
+    }
+</script>
+</body>
+</html>
