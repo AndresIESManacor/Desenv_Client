@@ -25,11 +25,21 @@
     <table id="table"></table>
 </div>
 <?php
-include("connection.php");
+$servername = "localhost";
+$user = "root";
+$password = "militaxx5AGB5";
+$database = "restaurante";
+
+$conn = new mysqli($servername, $user, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 $table = "restaurantes";
 
 $sql = "SELECT * FROM $table";
-$result = $conn->query($sql);
+echo $sql;
+/*$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
@@ -37,6 +47,7 @@ if ($result->num_rows > 0) {
         $text .= $row["Id"] ." ". $row["Nom"] ." ".$row["Poblacio"]." ".$row["CategoriaPrecio"];
     }
 }
+*/
 ?>
 </body>
 </html>
