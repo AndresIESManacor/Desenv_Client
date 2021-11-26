@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Andres</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            justify-content: center;
+        }
+        table, tr, th, td {
+            justify-content: center;
+            font-size: 32px;
+            border: skyblue solid 2px;
+        }
+        div {
+            margin-top: 100px;
+            text-align: center;
+        }
+        select {
+            padding: 20px 80px;
+        }
+    </style>
+</head>
+<body>
+<h1>TABLE WITH (PHP connected to DDBB)</h1>
+<div>
+    <table id="table">
+    </table>
+</div>
+<div>
+    <select id="options">
+        <option value="0">Selecciona</option>
+    </select>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#options").change(function (){
+            var poblacion = $("#options").val();
+            $("#table").empty();
+            loadPoblacion(poblacion);
+        });
+        function loadPoblacion(poblacion) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    var restaurantes = JSON.parse(this.responseText);
+                    showTable(restaurantes, false)
+                }
+            };
+            xhttp.open("GET", "bbddConnections/poblacion.php?poblacion="+poblacion, true);
+            xhttp.send();
+        }
+        function loadRestaurante() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    var restaurantes = JSON.parse(this.responseText);
+                    showTable(restaurantes, true)
+                }
+            };
+            xhttp.open("GET", "bbddConnections/restaurantes.php", true);
+            xhttp.send();
+        }
+
+        function showTable(restaurantes, boolean) {
+            var restaurante = "<thead><tr><td>ID</td><td>NOM</td><td>POBLACION</td><td>TIPO</td><td>CATEGORIA PRECIO</td></tr></thead>";
+            restaurante += "<tbody>";
+            for (var c in restaurantes) {
+                var id = restaurantes[c].Id;
+                var resNom = restaurantes[c].Nom;
+                var resPob = restaurantes[c].Poblacio;
+                var resTip = restaurantes[c].Tipo;
+                var resCatePri = restaurantes[c].CategoriaPrecio;
+                restaurante += "<tr>";
+                restaurante += "<td>"+id+"</td>";
+                restaurante += "<td>"+resNom+"</td>";
+                restaurante += "<td>"+resPob+"</td>";
+                restaurante += "<td>"+resTip+"</td>";
+                restaurante += "<td>"+resCatePri+"</td>";
+                restaurante += "</tr>";
+                if (boolean) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState === 4 && this.status === 200) {
+                            var restaurantesPoblacion = JSON.parse(this.responseText);
+                            for (var c in restaurantesPoblacion) {
+                                var poblacion = restaurantesPoblacion[c].Poblacio;
+                                var item = $("<option/>", {value:poblacion, text:poblacion});
+                                $("#options").append(item);
+                            }
+                        }
+                    };
+                    xhttp.open("GET", "bbddConnections/poblacion.php", true);
+                    xhttp.send();
+                    boolean = false;
+                }
+            }
+            restaurante += "</tbody>"
+            $("#table").append(restaurante);
+        }
+
+        loadRestaurante();
+
+    });
+</script>
+</body>
+</html>
