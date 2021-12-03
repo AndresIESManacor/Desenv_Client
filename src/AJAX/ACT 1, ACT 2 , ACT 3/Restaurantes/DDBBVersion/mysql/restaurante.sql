@@ -32,7 +32,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Carta` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL primary key,
   `Titol` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `RestaurantID` int NOT NULL,
   `Temporada` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
@@ -60,7 +60,7 @@ INSERT INTO `Carta` (`Id`, `Titol`, `RestaurantID`, `Temporada`) VALUES
 --
 
 CREATE TABLE `Restaurante` (
-  `Id` int NOT NULL,
+  `Id` int NOT NULL primary key,
   `Nom` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Poblacio` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Tipo` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
