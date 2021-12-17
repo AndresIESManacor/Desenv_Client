@@ -1,0 +1,146 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<h1>FORM VALIDATOR</h1>
+<form action="#">
+<fieldset>
+<legend>Form Fields</legend>
+<b>TEXT(REQUIRED):</b> <input type="text" id="t1" value="" size="10" /><span id="m1"></span><br/><br/>
+<b>DATE(DD/MM/YYYY):</b> <input type="text" id="t2" value="" size="10" /><span id="m2"></span><br/><br/>
+<b>NUMBER(BETWEEN 0 AND 99):</b> <input type="text" id="t3" value="" size="5" /><span id="m3"></span><br/><br/>
+<b>EMAIL:</b> <input type="text" id="t4" value="" size="10" /><span id="m4"></span><br/><br/>
+<b id="t5">CHECK THREE:</b>
+<input type="checkbox" id="cb1" value="a"/> Option A
+<input type="checkbox" id="cb2" value="b"/> Option B
+<input type="checkbox" id="cb3" value="c"/> Option C
+<input type="checkbox" id="cb4" value="d"/> Option D
+<span id="m5"></span><br/><br/>
+<b>SELECT:</b> 
+<select id="s1">
+<option value="0">Select one</option>
+<option value="A">Option A</option>
+<option value="B">Option B</option>
+<option value="C">Option C</option>
+<option value="D">Option D</option>
+</select>
+<span id="m6"></span><br/><br/>
+    <span id="allValidated"></span><br><br>
+<input type="submit" value="VALIDAR" onclick="validateForm();" />&nbsp;<input type="reset" value="RESET" />
+</fieldset>
+</form>
+<script>
+    var allValidated = 0;
+
+    function validateForm() {
+        validateText($('#t1'));
+        validateDate($('#t2'));
+        validateNumberBetween($('#t3'));
+        validateEmail($('#t4'));
+        validateCheckBox(document.getElementById('cb1'),document.getElementById('cb2'),document.getElementById('cb3'),document.getElementById('cb4'));
+        validateSelectOne($('#s1'));
+        isAllValidated();
+    }
+    function validateText(text) {
+        var textFieldText = $('#m1');
+        if (text.val()===null || text.val()==="" || text.val()===" " || text.val()===undefined) {
+            errorMessage(text, textFieldText, "Required text");
+        } else {
+            okMessage(text,textFieldText);
+        }
+    }
+    function validateDate(Date) {
+        var textFieldData = $('#m2');
+        if (Date.val()===null || Date.val()==="" || Date.val()===" " || Date.val()===undefined) {
+            errorMessage(Date, textFieldData, "Data Selected Error");
+        } else {
+            var arrayDate = Date.val().split('/');
+            if (arrayDate.length === 3) {
+                if ((arrayDate[0]<=31 && arrayDate[0]>=0) && (arrayDate[1]<=12 && arrayDate[1]>=0) && (arrayDate[2]>=1999)) {
+                    okMessage(Date,textFieldData);
+                } else {
+                    errorMessage(Date, textFieldData, "Data form selected is not correct");
+                }
+            } else {
+                errorMessage(Date, textFieldData, "Data form selected wrong");
+            }
+        }
+    }
+    function validateNumberBetween (Number) {
+        var textFieldNumber = $('#m3');
+        if (Number.val()===null || Number.val()==="" || Number.val()===" " || Number.val()===undefined) {
+            errorMessage(Number, textFieldNumber, "Not selected a number")
+        } else {
+            if (Number.val() >= 0 && Number.val() <= 99) {
+                okMessage(Number,textFieldNumber)
+            } else {
+                errorMessage(Number, textFieldNumber, "Number is not on the length told")
+            }
+        }
+    }
+    function validateEmail(Email) {
+        var textFieldEmail = $('#m4');
+        var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if(Email.val().match(pattern)) {
+            okMessage(Email,textFieldEmail)
+        } else {
+            errorMessage(Email, textFieldEmail, "The Email is wrong")
+        }
+    }
+
+    function validateCheckBox(check1, check2, check3, check4) {
+        var quantity = 0;
+        var id = $('#t5');
+        var textFieldCheck = $('#m5');
+        if (check1.checked) {
+            quantity++;
+        }
+        if (check2.checked) {
+            quantity++;
+        }
+        if (check3.checked) {
+            quantity++;
+        }
+        if (check4.checked) {
+            quantity++;
+        }
+        if (quantity===3) {
+            okMessage(id, textFieldCheck)
+        } else {
+            errorMessage(id, textFieldCheck, "The check needed are 3")
+        }
+    }
+    function validateSelectOne(Select) {
+        var textFieldSelect = $('#m6');
+        if (Select.val()!=0) {
+            okMessage(Select, textFieldSelect)
+        } else {
+            errorMessage(Select,textFieldSelect,'Not selected one of the list')
+        }
+        textFieldSelect.text(Select.val())
+    }
+
+    function isAllValidated() {
+        if (allValidated===6) {
+            $('#allValidated').text('ALL IS VALIDATED!!!!!').css('background-color','green');
+        } else {
+            $('#allValidated').text('ALL IS NOT VALIDATED!!!!!').css('background-color','red');
+        }
+    }
+
+    function errorMessage(id, m, message){
+        $(id).css("background-color", "red");
+        $(m).text(message);
+        allValidated = 0;
+    }
+
+    function okMessage(id, m){
+        allValidated++;
+        $(id).css("background-color", "green");
+        $(m).text("Correcte!!");
+    }
+</script>
+</body>
+</html>
