@@ -9,15 +9,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.24" level="project" />
     <orderEntry type="library" name="jquery-3.3.1" level="application" />
-    <orderEntry type="library" name="popper.js" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="font-awesome" level="application" />
-    <orderEntry type="library" name="bootstrap-validate" level="application" />
     <orderEntry type="library" name="jquery-3.3.1" level="application" />
     <orderEntry type="library" name="jquery.dataTables" level="application" />
     <orderEntry type="library" name="dataTables.jqueryui" level="application" />
     <orderEntry type="library" name="twitter-bootstrap" level="application" />
     <orderEntry type="library" name="dataTables.bootstrap5" level="application" />
+    <orderEntry type="library" name="twitter-bootstrap" level="application" />
+    <orderEntry type="library" name="dataTables.bootstrap4" level="application" />
+    <orderEntry type="library" name="select.bootstrap4" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
+    <orderEntry type="library" name="dataTables.select" level="application" />
   </component>
 </module>

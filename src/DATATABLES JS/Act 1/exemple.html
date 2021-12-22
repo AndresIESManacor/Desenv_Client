@@ -1,31 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@AndresIESManacor
-profeweb /
-WEB
-Public
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-
-Insights
-
-WEB/JSON/CLASSE/CONCESIONARI/dataTable.html
-@mitjanit
-mitjanit Exemple DataTable + AJAX + Bootstrap 4
-Latest commit e6be81f on Nov 23, 2018
-History
-1 contributor
-277 lines (221 sloc) 7.77 KB
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,13 +139,13 @@ History
   $(document).ready(function() {
     var t = $('#taula').DataTable( {
       ajax: {
-        url: 'marques.php',
+        url: 'bbddConnections/restaurantes.php',
         dataSrc: '',
-        type:"POST",
+        type:"GET",
       },
       columns:  [
-        { data: 'id' },
-        { data:'nom' }
+        { data: 'Id' },
+        { data:'Nom' }
       ],
       language: {
         url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Catalan.json"
@@ -185,13 +157,13 @@ History
     function loadData(){
       t = $('#taula').DataTable( {
         ajax: {
-          url: 'marques.php',
+          url: 'bbddConnections/restaurantes.php',
           dataSrc: '',
-          type:"POST",
+          type:"GET",
         },
         columns:  [
-          { data: 'id' },
-          { data:'nom' }
+          { data: 'Id' },
+          { data:'Nom' }
         ],
         language: {
           url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Catalan.json"
@@ -222,7 +194,7 @@ History
       var num = t.rows( { selected: true }).count();
       if(num>0){
         //alert("DATA:"+d[0]['id']+" "+d[0]['nom']);
-        modalEditaMarca(d[0]['id']);
+        modalEditaMarca(d[0]['Id']);
       }
       else {
         alert("NO HI HA RES SELECCIONAT.");
@@ -236,13 +208,13 @@ History
         if (this.readyState == 4 && this.status == 200) {
           var item = JSON.parse(this.responseText)[0];
           //console.log(item);
-          $("#idc").val(item.id);
-          $("#nomc").val(item.nom);
+          $("#idc").val(item.Id);
+          $("#nomc").val(item.Nom);
 
           $("#modalEditaMarca").modal();
         }
       };
-      xhttp.open("GET", "marca.php?id="+idMarca, true);
+      xhttp.open("GET", "bbddConnections/restaurantes.php?id="+idMarca, true);
       xhttp.send();
     }
 
@@ -253,7 +225,7 @@ History
       var num = t.rows( { selected: true }).count();
       if(num>0){
         //alert("DATA:"+d[0]['id']+" "+d[0]['nom']);
-        modalDeleteMarca(d[0]['id']);
+        modalDeleteMarca(d[0]['Id']);
       }
       else {
         alert("NO HI HA RES SELECCIONAT.");
@@ -266,11 +238,11 @@ History
         if (this.readyState == 4 && this.status == 200) {
           var item = JSON.parse(this.responseText)[0];
           console.log(item);
-          $("#infoMarca").html(item.nom);
+          $("#infoMarca").html(item.Nom);
           $("#modalDeleteMarca").modal();
         }
       };
-      xhttp.open("GET", "marca.php?id="+idMarca, true);
+      xhttp.open("GET", "bbddConnections/restaurantes.php?id="+idMarca, true);
       xhttp.send();
     }
 
@@ -281,9 +253,9 @@ History
       var nom =$("#nomc").val();
 
       $.ajax({
-        url:"editaMarca.php",
+        url:"bbddConnections/editaRestaurante.php",
         method:"POST",
-        data:{id:id, nom:nom},
+        data:{Id:id, Nom:nom},
         success:function(data){
           $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
           t.destroy();
