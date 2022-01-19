@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+<ul id="uls">
+
+</ul>
+
+<input type="button" class="add" id="add" value="Create text Final.">
+<input type="button" class="remove" id="remove" value="Remove text Start.">
+
+</body>
+<script>
+    /*-- a) Create a form where you can add and remove text fields.
+        You can use a button to create new text fields.
+        Every text field must have its particular button to remove itself. --*/
+    $(document).ready(function() {
+        $("#add").click(function() {
+            var field = $("<div class='field' id='field' + intId + />");
+            var name = $("<input type='text' class='fieldname' />");
+            var removeButton = $("<input type='button' class='remove' value='Delete' />");
+
+            removeButton.click(function() {
+                $(this).parent().remove();
+            });
+            field.append(name);
+            field.append(removeButton);
+            $("#uls").append(field);
+        });
+        $("#remove").click(function (){
+            var p = $("div").eq(0);
+            p.remove();
+        });
+    });
+</script>
+</html>

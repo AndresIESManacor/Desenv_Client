@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+
+<input type="button" id="a1" value="Change Background">
+<input type="button" id="b1" value="Medium">
+
+</body>
+<script>
+    /*-- a) Create a web page with 2 buttons. When you press on a button, its background colour must change,
+and when you release the button, it must return to the original background colour. --*/
+
+    $(document).ready(function() {
+        var x = $("#a1");
+        var y = $("#b1");
+        var colorA1 = x.css("background-color");
+        var colorB1 = y.css("background-color");
+
+        x.mousedown(function (){
+           x.css("background-color","#FFF000");
+           y.css("background-color","#FFF000")
+        });
+        x.mouseup(function (){
+            x.css("background-color",colorA1);
+            y.css("background-color",colorB1);
+        });
+        y.mousedown(function (){
+            x.css("background-color","#FFF000");
+            y.css("background-color","#FFF000")
+        });
+        y.mouseup(function (){
+            x.css("background-color",colorA1);
+            y.css("background-color",colorB1);
+        });
+    });
+</script>
+</html>

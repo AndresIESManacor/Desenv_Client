@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Abans</p>
+    <p id="alert">Ni</p>
+    <button type="button" onclick="alert()">BOTON</button>
+</body>
+<script>
+    function alert(){
+        x = document.getElementById("alert");
+        if (x.innerHTML === "No") {
+            x.innerHTML = "Ni";
+        } else {
+            x.innerHTML = "No";
+        }
+    }
+</script>
+</html>

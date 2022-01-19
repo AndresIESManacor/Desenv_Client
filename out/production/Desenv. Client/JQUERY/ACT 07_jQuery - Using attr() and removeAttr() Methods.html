@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+<a id="buttonTop" href="#">Este es el link</a>
+<br>
+
+<input type="button" id="b1" value="google">
+<input type="button" id="b2" value="youtube">
+<input type="button" id="b3" value="genshin">
+
+</body>
+<script>
+    /*-- a) Create a web page with a link (<a>) with href property empty, and three buttons.
+Write a script using jQuery to set a different value for href property depending on the button we click on. --*/
+    $(document).ready(function() {
+        $("#b1").click(function (){
+            $("#buttonTop").attr("href","www.google.com");
+        });
+        $("#b2").click(function (){
+            $("#buttonTop").attr("href","www.youtube.com");
+        });
+        $("#b3").click(function (){
+            $("#buttonTop").attr("href","www.genshin.com");
+        });
+    });
+</script>
+</html>

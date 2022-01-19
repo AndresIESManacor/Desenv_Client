@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+
+<input type="button" id="head" value="Show Head">
+<input type="button" id="body" value="Show Body">
+
+</body>
+<script>
+    /*-- a) Create a web page with two buttons.
+When you press on the first one, an alert box must appear showing all the content in the <head> section.
+And when you press on the second button, an alert box must appear showing all the content in the <body> section. --*/
+
+    $(document).ready(function() {
+        $("#head").click(function (){
+           alert($("head").html());
+        });
+        $("#body").click(function (){
+            alert($("body").html());
+        });
+    });
+</script>
+</html>

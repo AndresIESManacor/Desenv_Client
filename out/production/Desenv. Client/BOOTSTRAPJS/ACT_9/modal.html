@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+  <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <title>Modal JSON</title>
+</head>
+<body>
+<div class="container">
+  <h1>MODAL JSON</h1>
+  <form>
+    <div class="form-group">
+      <select id="meuSelect" class="form-control">
+        <option value="0">Selecciona</option>
+      </select>
+    </div>
+  </form>
+  <h4>Contingut del fitxer JSON (Carroceries):</h4>
+  <p id="demo"></p>
+
+  <h4>Contingut del fitxer JSON (Carroceria):</h4>
+  <p id="demo2"></p>
+
+  <div id="infoAlert" class="alert" role="alert"></div>
+</div>
+
+<div id="modalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- header modal -->
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edita Carroceria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <!-- body modal -->
+
+
+      <div class="modal-body">
+        <form role="form" name="formEdita">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Id:</label>
+              <input id="idChange" type="text" class="form-control" placeholder="Id" readonly="readonly" name="id">
+            </div>
+            <div class="col-md-6">
+              <label>Nom:</label>
+              <input id="nomChange" type="text" class="form-control" placeholder="Nom" name="nom">
+            </div>
+            <div class="col-md-12">
+              <label>Poblacio:</label>
+              <input id="pobChange" type="text" class="form-control" placeholder="Poblacio" name="pob">
+            </div>
+            <div class="col-md-12">
+              <label>Type:</label>
+              <input id="typeChange" type="text" class="form-control" placeholder="Type" name="type">
+            </div>
+            <div class="col-md-12">
+              <label>Price:</label>
+              <input id="priceChange" type="text" class="form-control" placeholder="Price" name="price">
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <!-- footer modal -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
+        <button id="bSubmit" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  var alert = $("#infoAlert");
+  $(document).ready(function(){
+
+    function loadPoblacion(id) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          $("#demo2").html(this.responseText);
+          var restaurante = JSON.parse(this.responseText)[0];
+
+          $("#idChange").val(restaurante.Id);
+          $("#nomChange").val(restaurante.Nom);
+          $("#pobChange").val(restaurante.Poblacio);
+          $("#typeChange").val(restaurante.Tipo);
+          $("#priceChange").val(restaurante.CategoriaPrecio);
+
+          $("#modalEdit").modal();
+        }
+      };
+      xhttp.open("GET", "../bbddConnections/restauranteID.php?id="+id, true);
+      xhttp.send();
+      alert.html(" ").removeClass();
+      alert.addClass("alert alert-warning").append("<p>This is the restaurant selected</p>")
+    }
+
+    function loadRestaurante() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          $("#demo").html(this.responseText);
+          var restaurantes = JSON.parse(this.responseText);
+          for (var i in restaurantes) {
+            var id = restaurantes[i].Id;
+            var nom = restaurantes[i].Nom;
+            var item = $("<option/>", {value:id, text:nom});
+            $("#meuSelect").append(item);
+          }
+        }
+      };
+      xhttp.open("GET", "../bbddConnections/restaurantes.php", true);
+      xhttp.send();
+    }
+
+    loadRestaurante();
+
+    $("#meuSelect").change(function(){
+      var id = $(this).val();
+      loadPoblacion(id);
+    });
+
+    $('#bSubmit').click(function() {
+      var id = $("#idChange").val();
+      var nom = $("#nomChange").val();
+      var pob = $("#pobChange").val();
+      var type = $("#typeChange").val();
+      var price = $("#priceChange").val();
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          $("#demo2").html(this.responseText);
+          alert.html(" ").removeClass();
+          alert.addClass("alert alert-success").append("<p>Success!!</p>");
+        }
+      };
+      xhttp.open("GET", "../bbddConnections/updateRestauranteID.php?id="+id+"&"+"nom="+nom+"&"+"pob="+pob+"&"+"type="+type+"&"+"price="+price, false);
+      xhttp.send();
+      loadRestaurante();
+    });
+
+  });
+</script>
+</body>
+</html>

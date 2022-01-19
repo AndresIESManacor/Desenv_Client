@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<style>
+    tr, th, td {
+        border: black solid 2px;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+</style>
+<body>
+<table>
+    <tr id="tr1">
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+    </tr>
+    <tr id="tr2">
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+    </tr>
+</table>
+</body>
+<script>
+    /*-- a) Create a web page with a two-rows table (<tr>). And write a script using jQuery to catch the click event on the table rows.
+When you click on a row, it must change its background colour. Use a different colour for every row. --*/
+    $(document).ready(function() {
+        $("#tr1").click(function (){
+            $(this).css("background-color","#ffff00");
+        });
+        $("#tr2").click(function (){
+            $(this).css("background-color","#ff0000");
+        });
+    });
+</script>
+</html>

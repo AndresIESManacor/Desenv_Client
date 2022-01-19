@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+    <p>1rt Paragraph</p>
+    <p id="secondP">2nd Paragraph</p>
+</body>
+<script>
+/*-- a) Create a web page with 2 paragraphs (<p>). And write a script using jQuery to catch the click event on the 2nd paragraph.
+    When you click on the 2nd paragraph an alert message "You pressed on 2nd Paragraph" must appear. --*/
+    $(document).ready(function() {
+        $("#secondP").click(function () {
+            alert("You pressed on 2nd Paragraph");
+        });
+    });
+</script>
+</html>

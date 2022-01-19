@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+  a) Enter a number in a text field and when we press a button an alert message shows the square of this number.
+
+b) Enter two numbers in 2 text fields and when we press a button an alert message shows the biggest one.
+
+c) Enter a name and a surname in 2 text fields, and when we press a button an alert message shows a text with concatenated name and surname.
+   */
+  function selectNumber() {
+      var number = prompt("Select a number");
+      number = parseInt(number);
+      alert((number*number)+" is the square of your number");
+  }
+  function selectTwoNumber(){
+      var number1 = prompt("Select number1");
+      var number2 = prompt("Select number2");
+      var biggest;
+      if (number1>number2) {
+          biggest = number1;
+      } else {
+          biggest = number2;
+      }
+      alert("the biggest is "+biggest);
+  }
+
+  function nameSurName(){
+      var name = prompt("Select name");
+      var surname = prompt("Select surname");
+      var newName = name+surname;
+      alert(newName);
+  }
+</script>
+<button id="button1" onclick="selectNumber()">(A)</button>
+<button id="button2" onclick="selectTwoNumber()">(B)</button>
+<button id="button3" onclick="nameSurName()">(C)</button>
+</body>
+</html>

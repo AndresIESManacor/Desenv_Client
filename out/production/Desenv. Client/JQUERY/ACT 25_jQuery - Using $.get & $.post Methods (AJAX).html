@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body style="text-align: center">
+    Enter a Number:<input type="text" name="value1" id="value1" size="10"><br>
+    Enter a Number:<input type="text" name="value2" id="value2" size="10"><br>
+    <br>
+    <input id="addition" type="submit" value="addition">
+    <input id="substraction" type="submit" value="substraction">
+    <input id="product" type="submit" value="product">
+    <input id="division" type="submit" value="division">
+    <br><br>
+    <div id="result">
+    <p></p>
+
+</div>
+</body>
+<script>
+    /*-- a) Write a Javascript script that uses 2 input text controls to enter the value of the
+        2 operands and 4 different buttons to perform the 4 basic arithmetic operations (addition, substraction, product and division).
+        The data (2 operands and 1 operation) is sent to the server where
+        the corresponding operation is calculated and returned using $.post or $.get function. The result is shown in a div. --*/
+    $(document).ready(function() {
+        var buttonAddition = $("#addition");
+        var buttonSubstraction = $("#substraction");
+        var buttonProduct = $("#product");
+        var buttonDivision = $("#division");
+
+        buttonAddition.click(function () {
+            var value1 = $("#value1").val();
+            var value2 = $("#value2").val();
+            $.get("act25.php",{value1: value1, value2: value2, operation: this.value},dataArrived)
+        });
+        buttonSubstraction.click(function () {
+            var value1 = $("#value1").val();
+            var value2 = $("#value2").val();
+            $.get("act25.php",{value1: value1, value2: value2, operation: this.value},dataArrived)
+        });
+        buttonProduct.click(function () {
+            var value1 = $("#value1").val();
+            var value2 = $("#value2").val();
+            $.get("act25.php",{value1: value1, value2: value2, operation: this.value},dataArrived)
+        });
+        buttonDivision.click(function () {
+            var value1 = $("#value1").val();
+            var value2 = $("#value2").val();
+            $.get("act25.php",{value1: value1, value2: value2, operation: this.value},dataArrived)
+        });
+
+        //Copied and paste
+        function dataArrived(data) {
+            var div = $("#result");
+            div.text(data);
+        }
+    });
+</script>
+</html>

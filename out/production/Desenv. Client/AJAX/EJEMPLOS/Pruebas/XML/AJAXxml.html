@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    table,th,td {
+        border : 1px solid black;
+        border-collapse: collapse;
+    }
+    th,td {
+        padding: 5px;
+    }
+    </style>
+</head>
+<body>
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Get my CD
+    collection</button>
+<br><br>
+<table id="demo"></table>
+<script>
+    var readyStateReady = 4; var statusOkey = 200;
+
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == readyStateReady && this.status == statusOkey) {
+                getParametresFromXML(xhttp);
+            }
+        };
+        xhttp.open("GET", "index.xml", true);
+        xhttp.send();
+    }
+    function getParametresFromXML(xhttp) {
+        var i;
+        var xmlDoc = xhttp.responseXML;
+        //console.log(xmlDoc);
+        var table="<tr><th>Artist</th><th>Title</th></tr>";
+        var xml = xmlDoc.getElementsByTagName("CD");
+        for (i = 0; i <xml.length; i++) {
+            table +=
+                "<tr><td>" +
+                xml[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue
+                + "</td><td>" +
+                xml[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue
+                + "</td></tr>";
+        }
+        document.getElementById("demo").innerHTML = table;
+    }
+</script>
+</body>
+</html>

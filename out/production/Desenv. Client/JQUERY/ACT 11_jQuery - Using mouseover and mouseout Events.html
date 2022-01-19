@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+<table style="border: black solid 3px">
+    <tr>
+        <td>Columna 1</td>
+        <td>Columna 2</td>
+    </tr>
+    <tr>
+        <td>HOLA SOY 1</td>
+        <td>HOLA SOY 2</td>
+    </tr>
+</table>
+</body>
+<script>
+    /*-- a) Create a table with 2 rows and two columns.
+        When you move the cursor over a cell, this must change its background colour, and when you move out the cursor from the cell,
+        this must change to its original background colour. --*/
+    $(document).ready(function() {
+        var x = $("td");
+        var color  = x.css("background-color");
+        x.mouseover(function (){
+            $(this).css("background-color","blue")
+        });
+        x.mouseout(function (){
+            $(this).css("background-color",color)
+        });
+    });
+</script>
+</html>

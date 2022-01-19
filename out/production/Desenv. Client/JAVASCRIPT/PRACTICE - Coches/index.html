@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Cars</title>
+    <link rel="stylesheet" href="car.css">
+    <script src="car.js"></script>
+</head>
+<script>
+    var list = [];
+    list[0] = new Car("4595960CL","PEUGEOT",40000,"blue");
+    list[1] = new Car("4535334LT","SEAT",20000,"yellow");
+
+    function printList(){
+        var txt="";
+        for (let i = 0; i < list.length; i++) {
+            txt+="<li>"+list[i].info()+"</li>";
+        }
+        return txt;
+    }
+
+    function createCar(){
+        return new Car(document.getElementById("Enrollment").value, document.getElementById("Model").value, document.getElementById("Price").value, document.getElementById("Color").value,)
+    }
+
+    function insertStart(){
+        var car = createCar();
+        list.unshift(car);
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function insertEnd(){
+        var car = createCar();
+        list.push(car);
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function deleteStart(){
+        list.shift();
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function deleteFinal(){
+        list.pop();
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function orderPriceUp(){
+        list.sort(function (a,b){return a.price-b.price});
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function orderPriceDown(){
+        list.sort(function (a,b){return b.price-a.price});
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function haveSEAT(){
+        var have = false;
+        for (let car in list) {
+            if (list[car].model.toUpperCase()==="SEAT") {
+                have = true;
+                break;
+            }
+        }
+        alert("Hi ha SEAT: "+have);
+    }
+
+    function howManyReds(){
+        var have = 0;
+        for (let car in list) {
+            if (list[car].color.toUpperCase()==="RED") {
+                have++;
+            }
+        }
+        alert("Hi ha: "+have+" cotxos color rojo");
+    }
+
+    function eurosToDollar(){
+        for (let i in list) {
+            list[i].convertToDollars();
+        }
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+    function dollarToEuros(){
+        for (let i in list) {
+            list[i].convertToEuros();
+        }
+        document.getElementById("list").innerHTML = printList();
+        document.getElementById("numTotalCars").innerHTML = list.length;
+    }
+
+</script>
+<body>
+    <h3>List of Cars</h3>
+    <p><span id="numTotalCars">0</span> cars</p>
+    <ol id="list">
+    </ol>
+    <hr/>
+    Enrollment: <input type="text" id="Enrollment"/>
+    Model: <input type="text" id="Model"/>
+    Price: <input type="text" id="Price"/>
+    Color: <input type="text" id="Color"/>
+    <hr/>
+    <button id="insertStart" onclick="insertStart()">INSERT ON START</button>
+    <button id="insertFinal" onclick="insertEnd()">INSERT ON THE END</button>
+    <button id="deleteStart" onclick="deleteStart()">REMOVE START</button>
+    <button id="deleteFinal" onclick="deleteFinal()">REMOVE ON THE END</button>
+    <button id="orderPriceUp" onclick="orderPriceUp()">ORDER PRICE UP</button>
+    <button id="orderPriceDown" onclick="orderPriceDown()">ORDER PRICE DOWN</button>
+    <button id="haveSEAT" onclick="haveSEAT()">HAVE SEAT?</button>
+    <button id="howManyReds" onclick="howManyReds()">HOW MANY REDS?</button>
+    <button id="eurosToDollar" onclick="eurosToDollar()">EUROS TO DOLLARS</button>
+    <button id="dollarToEuros" onclick="dollarToEuros()">DOLLARS TO EUROS</button>
+
+</body>
+<script>
+    document.getElementById("list").innerHTML = printList();
+    document.getElementById("numTotalCars").innerHTML = list.length;
+</script>
+</html>

@@ -1,0 +1,199 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+
+        .idLeft {
+            text-align: center;
+        }
+        tr, td, th {
+            border: solid 1px;
+        }
+
+#taula {float:left; border: solid 1px}
+#historial {height: 400px; margin:0 0 0 450px; background-color:yellow;}
+
+</style>
+</head>
+<body>
+<h1>PARKING</h1>
+<form action="#" style="background-color:#AAAAAA;">
+<fieldset>
+<legend>Parking Admininstration</legend>
+<b>PLATE NUMBER:</b> <input type="text" id="t1" value="" size="5" />
+<b>PARKING PLACE:</b> <select id="s1"></select>
+<button id="b1" >PARK IN</button>
+<button id="b2" >PARK OUT</button>
+<button id="b3" >NUM CARS</button>
+<button id="b4" >SORT</button>
+</fieldset>
+</form>
+<hr/>
+<div id="taula">
+</div>
+<div id="historial">
+<h1>Historial</h1>
+</div>
+<script>
+    var parking;
+
+	initParking();
+	initSelect();
+	showParking();
+
+    function initParking() {
+        parking = new Array(3);
+
+        parking[0] = new Array(3);
+        parking[1] = new Array(3);
+        parking[2] = new Array(3);
+        addParkingSlots();
+    }
+    function initSelect() {
+        var select = $('#s1');
+        for (let i = 0; i < parking.length; i++) {
+            for (let x = 0; x < parking[i].length; x++) {
+                if (i===0) {
+                    select.append("<option>A"+x+"</option>")
+                } else if (i===1) {
+                    select.append("<option>B"+x+"</option>")
+                } else if (i===2) {
+                    select.append("<option>C"+x+"</option>")
+                }
+            }
+        }
+    }
+    function addParkingSlots() {
+        for (let i = 0; i < parking.length; i++) {
+            for (let x = 0; x < parking[i].length; x++) {
+                parking[i][x] = new Array(2);
+                parking[i][x][0] = "empty.png";
+                parking[i][x][1] = "";
+            }
+        }
+    }
+    function showParking() {
+        var parkingTaula = $('#taula');
+        parkingTaula.text("");
+        parkingTaula.append("<tr><th></th><th>0</th><th>1</th><th>2</th></tr>")
+        for (let i = 0; i < parking.length; i++) {
+            parkingTaula.append("<tr></tr>");
+            if (i === 0) {
+                parkingTaula.append("<td>A</td>");
+            }
+            if (i === 1) {
+                parkingTaula.append("<td>B</td>");
+            }
+            if (i === 2) {
+                parkingTaula.append("<td>C</td>");
+            }
+            for (let x = 0; x < parking[i].length; x++) {
+                parkingTaula.append('<td><img src="'+parking[i][x][0]+'" alt="img"><p class="idLeft">'+parking[i][x][1]+'</p></td>');
+            }
+        }
+    }
+
+
+    /* Funtions start */
+
+    $('#b1').click(function () {
+        var number = resolveLetterToNumber($('#s1'));
+        parkIn(number);
+        showParking();
+    });
+    $('#b2').click(function () {
+        var number = resolveLetterToNumber($('#s1'));
+        parkOut(number);
+        showParking();
+    });
+
+    function parkIn(number) {
+        for (let i = 0; i < parking.length; i++) {
+            for (let x = 0; x < parking[i].length; x++) {
+                var numberArray = i+""+x;
+                if (number == numberArray) {
+                    if (parking[i][x][0] !== "empty.png") {
+                        alert("Parking is ocupate")
+                    } else {
+                        var t1 = $("#t1");
+                        if (t1.val()===null || t1.val()==="" || t1.val()===" " || t1.val()===undefined) {
+                            alert("Number Plate Not Selected")
+                        } else {
+                            parking[i][x][0] = "car.png";
+                            parking[i][x][1] = t1.val();
+                            alert("Car added!")
+                            addHistorial(t1.val(),$('#s1').val(), "Car Added!")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function parkOut(number) {
+        for (let i = 0; i < parking.length; i++) {
+            for (let x = 0; x < parking[i].length; x++) {
+                var numberArray = i+""+x;
+                if (number == numberArray) {
+                    if (parking[i][x][0] === "empty.png") {
+                        alert("Parking is not ocupated")
+                    } else {
+                        var t1 = $("#t1");
+                        if (t1.val()===null || t1.val()==="" || t1.val()===" " || t1.val()===undefined) {
+                            alert("Number Plate Not Selected")
+                        } else {
+                            parking[i][x][0] = "empty.png";
+                            parking[i][x][1] = "";
+                            alert("Car Removed!")
+                            addHistorial(t1.val(),$('#s1').val(), "Car Removed!")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    $('#b3').click(function () {
+        var quantityEmpty = 0;
+        var quantityOcupated = 0;
+        for (let i = 0; i < parking.length; i++) {
+            for (let x = 0; x < parking[i].length; x++) {
+                if (parking[i][x][0] === "empty.png") {
+                    quantityEmpty++;
+                } else {
+                    quantityOcupated++;
+                }
+            }
+        }
+        alert("Numbers of Empty parks "+quantityEmpty+" || Number of Ocupated parks "+quantityOcupated);
+    });
+    $('#b4').click(function () {
+        parking.sort(function (a, b) {
+            return a + b;
+        });
+        showParking();
+        alert("Sorted")
+    });
+
+    function resolveLetterToNumber(options) {
+        var arrayVal = options.val().split("");
+        var result = "";
+        if (arrayVal[0]==="A") {
+            result = 0+arrayVal[1];
+        }
+        if (arrayVal[0]==="B") {
+            result = 1+arrayVal[1];
+        }
+        if (arrayVal[0]==="C") {
+            result = 2+arrayVal[1];
+        }
+        return result;
+    }
+    function addHistorial(id,index, m) {
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        $('#historial').append(date+", "+time+" : Car "+id+" from "+index+" "+m+"<br>");
+    }
+</script>
+</body>
+</html>

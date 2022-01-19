@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img, button {
+            width: 100px;
+            height: 100px;
+        }
+        .visibleImg {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+<table style="border: black solid 3px">
+    <tr>
+        <td><img src="../../perro.jpg" alt="img"></td>
+        <td><button type="button">Button</button></td>
+    </tr>
+</table>
+</body>
+<script>
+    /*-- a) Create a table with 1 row and 2 columns.
+        There must be an image and a button in every cell.
+        When you press on a button cell, its image visibility must change from visible to hidden and viceversa. --*/
+    $(document).ready(function() {
+        var img = $("img");
+        var button = $("button");
+
+        button.click(function () {
+            img.toggle(".visibleImg");
+        });
+    });
+</script>
+</html>

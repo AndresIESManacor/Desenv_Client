@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function a(){
+      var day = prompt("Select day: ");
+      var month = prompt("Select month: ");
+      var year = prompt("Select year: ");
+
+      //25 diciembre (es navidad)
+      if (parseInt(day)===25 && month==="diciembre" || parseInt(month)===12) {
+          document.getElementById("a").innerHTML = ("ITS Christmas!!");
+      } else {
+          document.getElementById("a").innerHTML = ("ITS NOT Christmas!!");
+      }
+  }
+  function b(){
+      var number1 = prompt("Select a number: ");
+      var number2 = prompt("Select a number: ");
+      var number3 = prompt("Select a number: ");
+
+      if (number1<10 && number2<10 && number3<10) {
+          document.getElementById("b").innerHTML = ("All the numbers are less than 10");
+      } else {
+          document.getElementById("b").innerHTML = ("All the numbers are more or equal than 10");
+      }
+  }
+
+  function c(){
+      var x = prompt("Coordenada X: ");
+      var y = prompt("Coordenada Y: ");
+
+      if (x > 0 && y > 0) {
+          document.getElementById("c").innerHTML = "First Quadrant";
+      }
+      if (x < 0 && y > 0) {
+          document.getElementById("c").innerHTML = "Second Quadrant";
+      }
+      if (x < 0 && y < 0) {
+          document.getElementById("c").innerHTML = "Third Quadrant";
+      }
+      if (x > 0 && y < 0) {
+          document.getElementById("c").innerHTML = "Fourth Quadrant";
+      }
+  }
+
+  function d(){
+      var salary = prompt("salary: ");
+      var years = prompt("years: ");
+      var increment;
+
+      if (parseInt(salary)<500 && parseInt(years)>=10){
+          increment = parseInt(salary)*20/100;
+          document.getElementById("d").innerHTML = "YOUR SALARY(increment 20%)"+"= "+(parseInt(salary)+increment);
+      }
+      if (parseInt(salary)<500 && parseInt(years)<10){
+          increment = parseInt(salary)*5/100;
+          document.getElementById("d").innerHTML = "YOUR SALARY(increment 5%)"+"= "+(parseInt(salary)+increment);
+      }
+      if (parseInt(salary)>=500){
+          document.getElementById("d").innerHTML = "YOUR SALARY(is the same)"+"= "+parseInt(salary);
+      }
+  }
+
+  function e(){
+      var num1 = prompt("Select number: ");
+      var num2 = prompt("Select number: ");
+      var num3 = prompt("Select number: ");
+
+      if (num1<10 || num2<10 || num3<10) {
+          document.getElementById("e").innerHTML = "Some numbers are less than 10";
+      }
+  }
+</script>
+<button id="a" onclick="a()">Result A</button>
+<button id="b" onclick="b()">Result B</button>
+<button id="c" onclick="c()">Result C</button>
+<button onclick="d()">Result D</button>
+<button id="e" onclick="e()">Result E</button>
+<div id="d">Resultado D</div>
+</body>
+</html>

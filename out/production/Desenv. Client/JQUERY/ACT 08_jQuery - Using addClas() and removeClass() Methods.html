@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<style>
+    .styleBody{
+        color: blue;
+    }
+    .styleHead{
+        color: yellow;
+    }
+</style>
+<body>
+<table>
+    <thead class="styleHead">
+    <tr>
+        <th>Month</th>
+        <th>Savings</th>
+    </tr>
+    </thead>
+    <tbody class="styleBody">
+    <tr>
+        <td>January</td>
+        <td>$100</td>
+    </tr>
+    <tr>
+        <td>February</td>
+        <td>$80</td>
+    </tr>
+    </tbody>
+</table>
+
+<input type="button" id="ba" value="Add Style">
+<input type="button" id="br" value="Remove Style">
+
+</body>
+<script>
+    /*-- a) Create a web page with a table. Define two styles,
+one for the <thead> section and the other for the <tbody> section.
+Using two buttons link and unlink the two styles or classes. --*/
+
+    $(document).ready(function() {
+        $("#ba").click(function (){
+            $("thead").addClass("styleHead");
+            $("tbody").addClass("styleBody");
+        });
+        $("#br").click(function (){
+            $("thead").removeClass("styleHead");
+            $("tbody").removeClass("styleBody");
+        });
+    });
+</script>
+</html>

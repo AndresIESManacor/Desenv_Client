@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magatzem Andres</title>
+    <script src="Paquete.js"></script>
+    <script src="Estanteria.js"></script>
+    <script src="Almacen.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      * {
+        border: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: arial,sans-serif;
+      }
+      body {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 80px auto auto auto auto;
+      }
+      .tableShow {
+        grid-row: 2;
+        width: 100%;
+      }
+      .operations {
+        grid-row: 4;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        column-gap: 30px;
+      }
+      .operations input{
+        border: black solid 2px;
+        margin-top: 20px;
+        padding: 15px;
+      }
+      .title {
+        margin-top: 30px;
+        font-size: 30px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .formulari {
+        grid-row: 3;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        margin-left: 100px;
+        margin-right: 100px;
+        font-size: 20px;
+      }
+      .formulari div {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: 100%;
+      }
+      .formulari input, .formulari select {
+        padding: 5px;
+        text-align: center;
+        width: 30%;
+        border: darkgrey solid 2px;
+      }
+      #entrada {
+        background-color: dodgerblue;
+        color: white;
+        font-weight: bold;
+      }
+      #salida {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+      }
+      #numLibres, #orderPeso, #orderViejo, #calcular {
+        background-color: grey;
+        color: white;
+        font-weight: bold;
+      }
+      #log {
+        margin-top: 20px;
+        height: auto;
+        background-color: skyblue;
+          font-size: 50px;
+          text-align: center;
+      }
+      table {
+          width: 100%;
+          height: 200px;
+          display: grid;
+          grid-template-rows: 20% 80%;
+          grid-template-columns: 100%;
+      }
+      thead tr{
+          border: black solid 2px;
+          grid-row: 1;
+          height: 100%;
+          background-color: black;
+          color: white;
+          display: grid;
+          grid-template-rows: 100%;
+          grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+          margin-left: 20px;
+          margin-right: 20px;
+      }
+      thead tr td {
+          border: black solid 2px;
+      }
+      tbody tr{
+          display: grid;
+          grid-template-rows: 100%;
+          grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+          grid-row: 2;
+          margin-left: 20px;
+          margin-right: 20px;
+      }
+      tbody tr td {
+          height: auto;
+          border: black solid 2px;
+      }
+    </style>
+</head>
+<body>
+<h1 class="title">Magatzem<a id="number">(10)</a></h1>
+<div id="tableShow">
+
+</div>
+<div class="formulari">
+  <div>
+    <a>Posicion:</a>
+      <select id="position" name="selectPosition">
+      </select>
+  </div>
+  <div>
+    <a>Codigo Paquete:</a><input type="text" id="codigoPaquete">
+  </div>
+  <div>
+    <a>Destino:</a><input type="text" id="destinoPaquete">
+  </div>
+  <div>
+    <a>Peso (Kg):</a><input type="number" id="pesoPaquete">
+  </div>
+</div>
+<div class="operations">
+  <input id="entrada" type="button" value="ENTRADA">
+  <input id="salida" type="button" value="SALIDA">
+  <input id="numLibres" type="button" value="NUMERO LIBRES (ALERT)">
+  <input id="calcular" type="button" value="CALCULAR PVP">
+  <input id="orderPeso" type="button" value="ORDENAR POR PESO">
+  <input id="orderViejo" type="button" value="ORDENAR POR VIEJO">
+    <input id="reset" type="button" value="RESET">
+</div>
+<div id="log">
+
+</div>
+<script>
+    $(document).ready(function () {
+        //Genero el array de 10 elementos
+        var almacen = new Almacen(10);
+
+        //Lo inicializo y la muestro por pantalla
+        almacen.inicializarAlmacen();
+        almacen.mostrarArray();
+
+        //Select position en formulari
+        for(var i=0; i < almacen.estanteria.length; i++){
+            var options = $("<option></option>").val(i).text(i);
+            $("#position").append(options);
+        }
+
+        // FUNCIONES DE LOS BOTONES
+
+        $("#entrada").click(function () {
+            $("#log").html("");
+
+            // COGEMOS EL VALOR QUE LE HEMOS INSERTADO EN EL LISTADO
+            var posicion = $("select[name=selectPosition]").find(":selected").val();
+            var codiBarras = $("#codigoPaquete").val();
+            var destino = $("#destinoPaquete").val();
+            console.log(destino)
+            var peso = $("#pesoPaquete").val();
+
+            // CREAMOS UN NUEVO PAQUETE CON LA INFORMACION y LLAMOS A LA FUNCION PARA AÑADIRLO
+            var paquete = new Paquete(codiBarras, destino, peso)
+            almacen.anadirPaqueteConPasicion(paquete, posicion);
+        });
+
+        $("#salida").click(function () {
+            var log = $("#log");
+            log.html("");
+
+            // COGEMOS LA POSICION DEL SELECT
+            var posicion = $("select[name=selectPosition]").find(":selected").val();
+            var paquete = almacen.recogerPaquete(posicion);
+            log.html("Producto "+paquete.getInfo()+" recogido!!");
+        });
+
+        $("#numLibres").click(function () {
+            var texto = "Numero libres = "+almacen.getNumeroLibres()+"\n"+"Numeros ocupados = "+almacen.getNumOcupados();
+            $("#log").text(texto);
+            alert(texto);
+        });
+
+        $("#calcular").click(function () {
+            almacen.calcularPrecio();
+        });
+
+        $("#orderPeso").click(function () {
+            almacen.ordenarPorPeso();
+        });
+
+        $("#orderViejo").click(function () {
+            almacen.paqueteMasViejo();
+        });
+
+        $("#reset").click(function () {
+           almacen.resetOrdenar();
+        });
+    });
+
+</script>
+</body>
+</html>

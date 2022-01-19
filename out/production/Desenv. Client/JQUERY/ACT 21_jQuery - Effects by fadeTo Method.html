@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+<div id="div1">
+    <p id="p1">P 1</p>
+    <p id="p2">P 2</p>
+    <p id="p6">P 6</p>
+</div>
+</body>
+<script>
+    /*-- a) Create a div with some paragraphs.
+        When you click on the div, its opacity must be reduced to 0.20.
+        And when you double click on the div, its opacity must be increased to 1. --*/
+    $(document).ready(function() {
+        var div1 = $("#div1");
+
+        div1.click(function() {
+            $(this).fadeTo(1000,0.20);
+        });
+        div1.dblclick(function() {
+            $(this).fadeTo(1000,1);
+        });
+    });
+</script>
+</html>

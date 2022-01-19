@@ -1,0 +1,25 @@
+{
+  "name": "datatables-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jquery-3.6.0.min.js",
+  "target": "esnext",
+  "module": "esnext",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "datatables.net": "^1.11.3",
+    "datatables.net-bs5": "^1.11.3",
+    "datatables.net-dt": "^1.11.3",
+    "datatables.net-editor-bs5": "^2.0.3",
+    "jquery": "^1.12.4"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.45.1"
+  }
+}

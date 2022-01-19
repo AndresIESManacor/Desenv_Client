@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    /*
+a) When you click on an hyper-link, a random value between 0 and 2 is generated.
+ If the new value is 0 then you must load Google web page, if the value is 1 then you must
+ load the Yahoo web page and if the value is 2 then you must load Bing web page.
+ In order to generate a random value you can use the Math object.
+
+b) When you press a button a pop-up window appears. This window must have the monitor full width and the monitor half height.
+
+c) Show an alert message showing if the browser has enabled or disabled cookies.
+     */
+
+    function randomValue(){
+        return Math.random()*2;
+    }
+    function webOptions(){
+        var option = Math.round(randomValue());
+        if (option===0) {
+            window.open("https://www.google.com/","Google");
+        } else if (option===1){
+            window.open("https://es.yahoo.com/","Yahoo");
+        } else if (option===2){
+            window.open("https://www.bing.com/?setlang=es","Bing");
+        }
+    }
+
+    function c(){
+        alert(document.cookie);
+    }
+
+</script>
+<body>
+<button type="button" onclick="webOptions()"><a>Click Me!!(A)</a></button>
+<button type="button" onclick="window.open('', '','height=50%');"><a>Click Me!!(B)</a></button>
+<button type="button" onclick="c()"><a>Click Me!!(C)</a></button>
+</body>
+</html>

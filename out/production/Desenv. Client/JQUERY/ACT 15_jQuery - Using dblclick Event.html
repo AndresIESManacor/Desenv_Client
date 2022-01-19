@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<style>
+    .box800 {
+        width: 800px;
+        height: 70px;
+        border: black solid 2px;
+    }
+    .box250 {
+        width: 250px;
+        height: 250px;
+        border: black solid 2px;
+    }
+</style>
+<body>
+<div class="box250" id="box">
+
+</div>
+</body>
+<script>
+    /*-- a) Create a web page with a div of 800x70 pixels.
+When you double-click over this div, it must be re-sized to 250x250 pixels,
+and if you double-click again the div munst return to its original size (800x70). --*/
+
+    $(document).ready(function() {
+        var box = $("#box");
+        box.dblclick(function () {
+            box.toggleClass("box800 box250");
+        });
+    });
+</script>
+</html>

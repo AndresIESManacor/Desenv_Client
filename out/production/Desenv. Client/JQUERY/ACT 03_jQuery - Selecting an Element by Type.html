@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<body>
+<ul>
+    <li>Esto</li>
+    <li>Lo otro</li>
+    <li>Lo de más allá</li>
+    <li>Y mas aya que aya</li>
+</ul>
+</body>
+<script>
+    /*-- a) Create a web page with an unordered list (<ul>) with 4 different list items (<li>).
+        And write a script using jQuery to hide the <li> element that yiu press. To hide an element,
+        jQuery provides us the method hide(). --*/
+    $(document).ready(function() {
+        $("li").click(function() {
+            $(this).hide();
+        })
+    });
+</script>
+</html>

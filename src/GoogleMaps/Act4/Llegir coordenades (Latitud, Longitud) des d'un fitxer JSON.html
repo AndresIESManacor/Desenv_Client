@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<div id="googleMap" style="width:100%;height:100vh;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=myMap"></script>
+<script>
+    var coordenadas = loadRestaurante();
+    function myMap() {
+        var mapOptions= {
+            center:new google.maps.LatLng(44,2),
+            zoom:10,
+        };
+
+
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+        var myPosition = {lat: coordenadas[0].longitud, lng: coordenadas[0].latitud};
+    }
+
+    function loadRestaurante() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                return JSON.parse(this.responseText);
+            }
+        };
+        xhttp.open("GET", "../bbddConnections/longitud.php", true);
+        xhttp.send();
+    }
+</script>
+</body>
+</html>

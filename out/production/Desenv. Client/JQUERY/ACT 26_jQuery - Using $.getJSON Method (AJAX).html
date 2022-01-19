@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body>
+<div>
+    <form style="padding-left: 10px">
+        Cities:
+        <select id="selectCity">
+            <option value="MANACOR">MANACOR</option>
+            <option value="PALMA">PALMA</option>
+            <option value="INCA">INCA</option>
+            <option value="SOLLER">SOLLER</option>
+        </select>
+        <input id="submit" type="button" value="Submit">
+    </form>
+    <ul id="list">
+
+    </ul>
+</div>
+</body>
+<script>
+    /*-- a) Write a Javascript script that uses a SELECT form field with various
+        names of cities (MANACOR, PALMA, INCA, SOLLER; ...) to filter the information
+        from a JSON file with the company workers information (name, age  and city).
+        The filtered result must be shown in an unordered list UL. Use a JSON file as the following one.  --*/
+    $(document).ready(function() {
+        $("#submit").click(function () {
+            var sel = $("#selectCity").val();
+            $.getJSON("workers.json", function (worker) {
+                 var list = $('#list');
+                 list.html("");
+                 for (var i = 0; i < worker.length; i++) {
+                     if (sel===worker[i].city) {
+                         list.append('<div style="border: skyblue solid 2px">');
+                         list.append('<p> Name: ' + worker[i].name + '</p>');
+                         list.append('<p>Age : ' + worker[i].age + '</p>');
+                         list.append('<p> City: ' + worker[i].city + '</p>');
+                         list.append('</div>');
+                     }
+                 }
+             });
+         });
+    });
+
+</script>
+</html>
