@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import Header from './components/Header';
-import Clicker from './components/ButtonClick';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ButtonClick from "./components/ButtonClick";
 
 class App extends Component {
 
@@ -17,9 +16,8 @@ class App extends Component {
   render() {
     return (
         <div>
-          <Header title={this.state.title} />
           <div className="mt-5">
-            <Clicker />
+            <ButtonClick />
           </div>
         </div>
     );

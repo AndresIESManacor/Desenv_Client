@@ -5,7 +5,7 @@ class ButtonClick extends Component {
     constructor(props) {
         super();
         this.state = {
-            count: props.count
+            contador: props.contador
         };
 
         this.incrementCount = this.incrementCount.bind(this);
@@ -13,22 +13,22 @@ class ButtonClick extends Component {
         this.resetCount = this.resetCount.bind(this);
     }
     incrementCount() {
-        this.setState((prevState) => ({ count: prevState.count + 1 }));
+        this.setState((countBefore) => ({ contador: countBefore.contador + 1 }));
     }
 
     decrementCount() {
-        this.setState((prevState) => ({ count: prevState.count - 1 }));
+        this.setState((countBefore) => ({ contador: countBefore.contador - 1 }));
     }
 
     resetCount() {
-        this.setState(() => ({ count: 0 }));
+        this.setState(() => ({ contador: 0 }));
     }
     render(props) {
         return(
             <div className="container">
                 <div className="clicker border border-secondary rounded">
                     <div className="clicker-display d-flex align-items-center bg-light text-secondary">
-                        <div className="mx-auto display-1">{this.state.count}</div>
+                        <div className="mx-auto display-1">{this.state.contador}</div>
                     </div>
                     <div className="clicker-button-panel d-flex flex-row">
                         <button className="btn btn-success w-100" onClick={this.incrementCount}>
@@ -47,6 +47,6 @@ class ButtonClick extends Component {
     }
 }
 ButtonClick.defaultProps = {
-    count: 0
+    contador: 0
 };
 export default ButtonClick;
